@@ -1956,7 +1956,6 @@
         const instr = instruction || "Improve this code: fix bugs, add validation and clarity.";
         if (!old.trim()) { toast("Current file is empty — nothing to edit"); return; }
         setBusy(true);
-        addMsg("user", `✏️ Edit ${file}: ${instr}`);
         const thinkEl = addThinking();
         const messages = [
           { role: "system", content: systemPrompt() },
@@ -2029,13 +2028,13 @@
         let html = esc(code);
         // order: comments, strings, keywords, numbers, calls, tags
         html = html
-          .replace(/(\/\*[\s\S]*?\*\/|\/\/[^\n]*|&lt;!--[\s\S]*?--&gt;)/g, (m) => { tok.push(`<span class="tok-c">${m}</span>`); return `${tok.length - 1}`; })
-          .replace(/(&quot;[^\n]*?&quot;|&#39;[^\n]*?&#39;|`[^`\n]*`)/g, (m) => { tok.push(`<span class="tok-s">${m}</span>`); return `${tok.length - 1}`; })
+          .replace(/(\/\*[\s\S]*?\*\/|\/\/[^\n]*|&lt;!--[\s\S]*?--&gt;)/g, (m) => { tok.push(`<span class="tok-c">${m}</span>`); return `\x00z${(tok.length - 1).toString(36)}z\x00`; })
+          .replace(/(&quot;[^\n]*?&quot;|&#39;[^\n]*?&#39;|`[^`\n]*`)/g, (m) => { tok.push(`<span class="tok-s">${m}</span>`); return `\x00z${(tok.length - 1).toString(36)}z\x00`; })
           .replace(/\b(function|return|const|let|var|class|extends|import|from|export|default|if|else|for|while|do|switch|case|break|continue|new|try|catch|finally|throw|async|await|yield|typeof|instanceof|in|of|null|undefined|true|false|this|super|static|get|set|delete|void)\b/g, '<span class="tok-k">$1</span>')
           .replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="tok-n">$1</span>')
           .replace(/([A-Za-z_$][\w$]*)(?=\s*\()/g, '<span class="tok-a">$1</span>')
           .replace(/(&lt;\/?[a-zA-Z][^&\s]*|\/?&gt;)/g, '<span class="tok-t">$1</span>')
-          .replace(/(\d+)/g, (m) => tok[+m]);
+          .replace(/\x00z([\da-z]+)z\x00/g, (m, i) => tok[parseInt(i, 36)]); // restore saved tokens
         return html + "\n";
       }
       function syncHighlight() {
@@ -2626,7 +2625,7 @@
       on("newFile2", "click", newFile);
       on("aiEditBtn", "click", () => {
         const instr = window.prompt(`AI Edit instruction for ${state.active}:`, "Improve this code: fix bugs, add validation and clarity.");
-        if (instr !== null) runAiEdit(instr);
+        if (instr !== null) { addMsg("user", `✏️ Edit ${state.active}: ${instr}`); runAiEdit(instr); }
       });
       on("previewBtn", "click", previewHtml);
       on("syntaxBtn", "click", () => { state.settings.syntax = !state.settings.syntax; save(); render(); toast("Syntax highlighting " + (state.settings.syntax ? "on" : "off")); });
