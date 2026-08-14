@@ -2,52 +2,2947 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#070912" />
-    <meta name="description" content="Local + OpenRouter AI Workbench: a single-file, local-first coding, model, and HTML game/app lab." />
-    <title>Local + OpenRouter AI Workbench V1.2</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
+    />
+    <meta name="theme-color" content="#080b16" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="description"
+      content="ForgePilot Local: a single-file, iOS-first AI coding workbench with the full Continue.dev feature set — Chat, Edit, Agent, Autocomplete, Docs, custom agents, rules, context providers, streaming, tool calling and more. Runs against Ollama locally or OpenRouter cloud."
+    />
+    <title>ForgePilot Local — Continue.dev AI Workbench</title>
     <style>
-      :root{color-scheme:dark;--bg:#070912;--panel:rgba(16,19,32,.86);--panel2:rgba(24,28,46,.92);--soft:rgba(255,255,255,.07);--line:rgba(255,255,255,.115);--text:#f7f8ff;--muted:#a7b0c8;--brand:#745cff;--cyan:#16d9ff;--green:#4ade80;--amber:#facc15;--pink:#fb7185;--red:#ff5f7a;--shadow:0 24px 90px rgba(0,0,0,.45);--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:var(--sans);color:var(--text);background:radial-gradient(circle at 12% 0,rgba(116,92,255,.34),transparent 30%),radial-gradient(circle at 90% 8%,rgba(22,217,255,.25),transparent 34%),linear-gradient(135deg,#060711,#11172a 55%,#071017);overflow:hidden}button,input,textarea,select{font:inherit}button{border:0;cursor:pointer;color:inherit}input,textarea,select{width:100%;color:var(--text);background:rgba(7,9,17,.9);border:1px solid var(--line);border-radius:14px;padding:11px 12px;outline:none}.app{display:grid;grid-template-columns:284px minmax(0,1fr) 430px;gap:14px;height:100dvh;padding:14px}.panel{min-height:0;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.064),rgba(255,255,255,.025));box-shadow:var(--shadow);backdrop-filter:blur(20px)}.sidebar{display:flex;flex-direction:column;gap:14px;padding:15px;overflow:auto}.brand{display:flex;gap:12px;align-items:center}.logo{width:46px;height:46px;border-radius:16px;background:conic-gradient(from 160deg,var(--brand),var(--cyan),#59f0a2,var(--brand));box-shadow:0 0 42px rgba(22,217,255,.28)}h1,h2,h3{margin:0}h1{font-size:18px}h2{font-size:17px}h3{font-size:15px;margin:12px 0 8px}.muted,.subtitle{color:var(--muted);font-size:12px;line-height:1.45}.nav,.metric-grid,.stack,.cards,.filetree,.model-grid,.arena-grid,.settings-grid{display:grid;gap:8px}.nav button,.action,.chip,.mode,.cardlet,.file,.model-card,.arena-card,.quick{background:var(--soft);border:1px solid var(--line);border-radius:15px;padding:10px 12px;text-align:left}.nav button.active,.mode.active,.chip.active,.model-card.selected{border-color:rgba(116,92,255,.75);background:linear-gradient(135deg,rgba(116,92,255,.34),rgba(22,217,255,.13))}.metric-grid{grid-template-columns:1fr 1fr}.metric{border:1px solid var(--line);border-radius:16px;background:var(--soft);padding:12px}.metric b{display:block;font-size:21px}.metric span{color:var(--muted);font-size:11px}.workspace{display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden}.topbar{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:14px 16px;border-bottom:1px solid var(--line)}.tabs,.toolbar,.row,.filterbar,.modebar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.pill,.badge{color:var(--muted);border:1px solid var(--line);border-radius:999px;background:var(--soft);padding:6px 9px;font-size:12px}.primary,.secondary,.ghost{min-height:41px;border-radius:14px;padding:10px 13px;font-weight:760}.primary{background:linear-gradient(135deg,var(--brand),var(--cyan));color:white}.secondary{background:var(--soft);border:1px solid var(--line)}.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}.view{display:grid;grid-template-columns:minmax(0,1fr) minmax(315px,.9fr);gap:14px;padding:14px;min-height:0}.wide{grid-column:1/-1}.card{min-height:0;overflow:hidden;border:1px solid var(--line);border-radius:20px;background:rgba(8,10,20,.66)}.card header{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);color:var(--muted);font-size:12px}.scroll{height:100%;overflow:auto;padding:14px}.editor{height:100%;min-height:420px;resize:none;border:0;border-radius:0;background:#070911;font-family:var(--mono);font-size:13px;line-height:1.55;padding:18px}.diff{font-family:var(--mono);white-space:pre-wrap;background:#070911;border:1px solid var(--line);border-radius:14px;padding:12px;max-height:260px;overflow:auto}.add{color:#86efac}.del{color:#fda4af}.file.active{border-color:rgba(22,217,255,.65);background:rgba(22,217,255,.09)}.model-card{display:grid;gap:8px}.model-card strong{font-size:14px}.cap{display:inline-block;margin:2px 4px 2px 0;padding:3px 7px;border-radius:999px;background:rgba(22,217,255,.1);border:1px solid rgba(22,217,255,.25);font-size:11px;color:#c9f7ff}.price{font-family:var(--mono);font-size:11px;color:var(--muted)}.assistant{display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;overflow:hidden;transition:transform .22s ease,opacity .22s ease}.assistant-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:16px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,rgba(116,92,255,.14),rgba(22,217,255,.14))}.messages{overflow:auto;display:flex;flex-direction:column;gap:12px;padding:14px}.msg{padding:12px 13px;border-radius:17px;line-height:1.45;font-size:14px;white-space:pre-wrap}.msg.user{margin-left:26px;background:rgba(116,92,255,.25)}.msg.ai{margin-right:26px;background:rgba(255,255,255,.07)}.reasoning{border-left:3px solid var(--cyan);background:rgba(22,217,255,.08)}.composer{display:grid;gap:9px;padding:12px;border-top:1px solid var(--line);background:rgba(6,8,15,.62)}.composer-row{display:grid;grid-template-columns:1fr auto;gap:8px}.status{display:flex;gap:9px;align-items:center;padding:10px 16px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.dot{width:9px;height:9px;border-radius:999px;background:var(--green);box-shadow:0 0 18px var(--green)}.hidden{display:none!important}.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:50;opacity:0;pointer-events:none;transition:.25s;background:#171b2a;border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow);padding:12px 16px}.toast.show{opacity:1}.modal{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.62)}.modal-inner{width:min(820px,100%);border:1px solid var(--line);border-radius:26px;background:#101321;box-shadow:var(--shadow);padding:22px}.mobile-dock,.assistant-fab,.plus-fab{display:none}.autocomplete{position:absolute;right:28px;bottom:82px;max-width:390px;border:1px solid var(--line);border-radius:14px;background:#101321;box-shadow:var(--shadow);padding:10px;font-family:var(--mono);font-size:12px;color:#dff7ff}.bars span{display:block;height:8px;border-radius:9px;margin:6px 0;background:linear-gradient(90deg,var(--brand),var(--cyan))}@media(max-width:1180px){.app{grid-template-columns:86px minmax(0,1fr)}.sidebar{align-items:center;overflow:visible}.brand h1,.brand .subtitle,.nav span,.metric-grid{display:none}.action{width:100%;font-size:0;text-align:center}.assistant{position:fixed;inset:14px 14px 14px auto;width:min(430px,calc(100vw - 28px));z-index:25}.assistant.collapsed{transform:translateX(calc(100% + 26px));opacity:0;pointer-events:none}.assistant-fab{display:inline-grid;position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:26;place-items:center;width:58px;height:58px;border-radius:999px;box-shadow:var(--shadow)}}@media(max-width:760px){body{overflow:auto;background-attachment:fixed}.app{display:block;min-height:100dvh;height:auto;padding:max(8px,env(safe-area-inset-top)) 8px calc(92px + env(safe-area-inset-bottom))}.sidebar{display:none}.workspace{min-height:calc(100dvh - 104px);border-radius:22px}.topbar{display:grid;padding:12px}.topbar .toolbar{display:none}.tabs{margin-top:8px;overflow-x:auto;flex-wrap:nowrap}.pill{font-size:11px;white-space:nowrap}.view{grid-template-columns:1fr;padding:10px;gap:10px}.editor{min-height:45dvh;font-size:12.5px;padding:14px}.assistant{inset:auto 8px calc(78px + env(safe-area-inset-bottom)) 8px;width:auto;height:min(72dvh,680px);border-radius:24px}.assistant.collapsed{transform:translateY(calc(100% + 98px));opacity:0}.assistant-head{padding:14px}.assistant-head h2{font-size:18px}.messages{padding:10px}.msg{font-size:14px;margin-left:0!important;margin-right:0!important}.composer textarea{min-height:74px}.mobile-dock{display:grid;position:fixed;left:8px;right:8px;bottom:max(8px,env(safe-area-inset-bottom));z-index:30;grid-template-columns:repeat(5,1fr);gap:7px;padding:8px;border:1px solid var(--line);border-radius:24px;background:rgba(11,13,24,.92);backdrop-filter:blur(18px);box-shadow:var(--shadow)}.mobile-dock button{min-height:48px;border-radius:17px;background:var(--soft);border:1px solid var(--line);font-size:11px}.assistant-fab{display:grid;right:18px;bottom:calc(86px + env(safe-area-inset-bottom))}.plus-fab{display:grid;position:fixed;left:18px;bottom:calc(86px + env(safe-area-inset-bottom));z-index:31;place-items:center;width:58px;height:58px;border-radius:999px;box-shadow:var(--shadow)}.filterbar{overflow:auto;flex-wrap:nowrap}.filterbar button{white-space:nowrap}.model-grid,.arena-grid,.settings-grid{grid-template-columns:1fr!important}.autocomplete{left:18px;right:18px;bottom:150px}}@media(min-width:900px){.settings-grid{grid-template-columns:repeat(2,1fr)}.arena-grid{grid-template-columns:repeat(3,1fr)}.model-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+      :root {
+        color-scheme: dark;
+        --bg: #060812;
+        --panel: rgba(20, 24, 42, 0.66);
+        --panel-solid: #141830;
+        --soft: rgba(255, 255, 255, 0.07);
+        --soft2: rgba(255, 255, 255, 0.11);
+        --line: rgba(255, 255, 255, 0.13);
+        --text: #f5f7ff;
+        --muted: #9aa6c4;
+        --brand: #7c5cff;
+        --cyan: #22d3ee;
+        --green: #4ade80;
+        --amber: #fbbf24;
+        --pink: #fb7185;
+        --red: #ff5f7a;
+        --shadow: 0 24px 90px rgba(0, 0, 0, 0.5);
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        --sans: -apple-system, BlinkMacSystemFont, Inter, ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+        --safe-b: env(safe-area-inset-bottom, 0px);
+        --safe-t: env(safe-area-inset-top, 0px);
+        --kb: 0px;
+        --radius: 22px;
+      }
+      body[data-theme="light"] {
+        color-scheme: light;
+        --bg: #eef1f8;
+        --panel: rgba(255, 255, 255, 0.72);
+        --panel-solid: #ffffff;
+        --soft: rgba(15, 23, 42, 0.06);
+        --soft2: rgba(15, 23, 42, 0.1);
+        --line: rgba(15, 23, 42, 0.14);
+        --text: #111827;
+        --muted: #5b6478;
+        --shadow: 0 20px 60px rgba(60, 70, 110, 0.18);
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        color: var(--text);
+        background:
+          radial-gradient(circle at 15% -5%, rgba(124, 92, 255, 0.4), transparent 34%),
+          radial-gradient(circle at 92% 4%, rgba(34, 211, 238, 0.3), transparent 36%),
+          radial-gradient(circle at 55% 108%, rgba(251, 113, 133, 0.16), transparent 40%),
+          linear-gradient(160deg, #05060f, #0d1226 52%, #081019);
+        background-attachment: fixed;
+        overflow: hidden;
+      }
+      body[data-theme="light"] {
+        background:
+          radial-gradient(circle at 15% -5%, rgba(124, 92, 255, 0.25), transparent 34%),
+          radial-gradient(circle at 92% 4%, rgba(34, 211, 238, 0.2), transparent 36%),
+          linear-gradient(160deg, #f2f4fb, #e6eaf6);
+        background-attachment: fixed;
+      }
+      body.no-anim * {
+        transition: none !important;
+        animation: none !important;
+      }
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+      }
+      button {
+        border: 0;
+        cursor: pointer;
+        color: inherit;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      button:active {
+        transform: scale(0.965);
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        color: var(--text);
+        background: rgba(7, 9, 17, 0.75);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 11px 13px;
+        outline: none;
+        font-size: 16px; /* prevents iOS auto-zoom on focus */
+      }
+      body[data-theme="light"] input,
+      body[data-theme="light"] textarea,
+      body[data-theme="light"] select {
+        background: rgba(255, 255, 255, 0.85);
+      }
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: rgba(124, 92, 255, 0.7);
+        box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.22);
+      }
+      select option {
+        color: #111;
+      }
+      .hidden {
+        display: none !important;
+      }
+
+      /* ===== Layout ===== */
+      .app {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr) 430px;
+        gap: 14px;
+        height: 100dvh;
+        padding: 14px;
+      }
+      .panel {
+        min-height: 0;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025));
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(22px) saturate(1.5);
+        -webkit-backdrop-filter: blur(22px) saturate(1.5);
+      }
+      body[data-theme="light"] .panel {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.6));
+      }
+
+      /* ===== Sidebar (desktop) ===== */
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 16px;
+        overflow: auto;
+      }
+      .brand {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .logo {
+        width: 46px;
+        height: 46px;
+        border-radius: 16px;
+        background: conic-gradient(from 160deg, var(--brand), var(--cyan), #59f0a2, var(--brand));
+        box-shadow: 0 0 42px rgba(34, 211, 238, 0.3);
+        flex: 0 0 auto;
+      }
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+      }
+      h1 {
+        font-size: 18px;
+      }
+      h2 {
+        font-size: 17px;
+      }
+      h3 {
+        font-size: 14px;
+        margin: 14px 0 8px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .muted,
+      .subtitle {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+      .nav,
+      .metric-grid,
+      .stack,
+      .cards,
+      .filetree,
+      .model-grid,
+      .arena-grid,
+      .settings-grid {
+        display: grid;
+        gap: 8px;
+      }
+      .nav button,
+      .action,
+      .chip,
+      .mode,
+      .cardlet,
+      .file,
+      .model-card,
+      .arena-card,
+      .quick {
+        background: var(--soft);
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        padding: 11px 13px;
+        text-align: left;
+      }
+      .nav button.active,
+      .mode.active,
+      .chip.active,
+      .model-card.selected {
+        border-color: rgba(124, 92, 255, 0.8);
+        background: linear-gradient(135deg, rgba(124, 92, 255, 0.38), rgba(34, 211, 238, 0.15));
+      }
+      .metric-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .metric {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--soft);
+        padding: 12px;
+      }
+      .metric b {
+        display: block;
+        font-size: 20px;
+      }
+      .metric span {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      /* ===== Workspace ===== */
+      .workspace {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        overflow: hidden;
+      }
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+      }
+      .tabs,
+      .toolbar,
+      .row,
+      .filterbar,
+      .modebar {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .pill,
+      .badge {
+        color: var(--muted);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--soft);
+        padding: 6px 10px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .primary,
+      .secondary,
+      .ghost {
+        min-height: 42px;
+        border-radius: 14px;
+        padding: 10px 14px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .primary {
+        background: linear-gradient(135deg, var(--brand), var(--cyan));
+        color: #fff;
+        box-shadow: 0 8px 26px rgba(124, 92, 255, 0.35);
+      }
+      .secondary {
+        background: var(--soft);
+        border: 1px solid var(--line);
+      }
+      .ghost {
+        background: transparent;
+        border: 1px solid var(--line);
+        color: var(--muted);
+      }
+      .danger {
+        color: var(--red);
+      }
+      .view {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.85fr);
+        gap: 14px;
+        padding: 14px;
+        min-height: 0;
+        overflow: hidden;
+      }
+      .wide {
+        grid-column: 1 / -1;
+      }
+      .card {
+        min-height: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: rgba(8, 10, 20, 0.55);
+        display: flex;
+        flex-direction: column;
+      }
+      body[data-theme="light"] .card {
+        background: rgba(255, 255, 255, 0.6);
+      }
+      .card header {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+        flex: 0 0 auto;
+      }
+      .scroll {
+        height: 100%;
+        overflow: auto;
+        padding: 14px;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+      }
+      .cardlet {
+        display: block;
+      }
+      .cardlet strong {
+        font-size: 13px;
+      }
+
+      /* ===== Editor ===== */
+      .editor-wrap {
+        position: relative;
+        height: 100%;
+        min-height: 0;
+        flex: 1;
+      }
+      .editor {
+        height: 100%;
+        min-height: 300px;
+        resize: none;
+        border: 0;
+        border-radius: 0;
+        background: #070911;
+        color: #e6ecff;
+        font-family: var(--mono);
+        font-size: 13.5px;
+        line-height: 1.6;
+        padding: 18px;
+        caret-color: var(--cyan);
+        tab-size: 2;
+      }
+      .editor:focus {
+        box-shadow: none;
+        border: 0;
+      }
+      .editor-hl {
+        position: absolute;
+        inset: 0;
+        margin: 0;
+        padding: 18px;
+        overflow: hidden;
+        font-family: var(--mono);
+        font-size: 13.5px;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        word-break: break-word;
+        color: #e6ecff;
+        background: #070911;
+        pointer-events: none;
+        tab-size: 2;
+        z-index: 1;
+      }
+      .editor.transparent {
+        color: transparent;
+        background: transparent;
+        position: relative;
+        z-index: 2;
+      }
+      .tok-k { color: #c792ea; }
+      .tok-s { color: #a5e07f; }
+      .tok-c { color: #5c6773; font-style: italic; }
+      .tok-n { color: #f78c6c; }
+      .tok-t { color: #7fdbca; }
+      .tok-a { color: #82aaff; }
+
+      .diff {
+        font-family: var(--mono);
+        white-space: pre-wrap;
+        background: #070911;
+        color: #d9e2ff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 12px;
+        max-height: 260px;
+        overflow: auto;
+        font-size: 12.5px;
+      }
+      .add { color: #86efac; }
+      .del { color: #fda4af; }
+      .file.active {
+        border-color: rgba(34, 211, 238, 0.65);
+        background: rgba(34, 211, 238, 0.1);
+      }
+      .file {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        align-items: center;
+        width: 100%;
+      }
+      .file .fname {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 13px;
+      }
+      .file .fmeta {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        flex: 0 0 auto;
+      }
+      .icon-btn {
+        min-height: 30px;
+        min-width: 30px;
+        border-radius: 10px;
+        background: var(--soft2);
+        border: 1px solid var(--line);
+        font-size: 13px;
+        display: inline-grid;
+        place-items: center;
+        padding: 0 7px;
+      }
+
+      /* ===== Models / Arena ===== */
+      .model-card {
+        display: grid;
+        gap: 7px;
+        width: 100%;
+      }
+      .model-card strong {
+        font-size: 14px;
+      }
+      .cap {
+        display: inline-block;
+        margin: 2px 4px 2px 0;
+        padding: 3px 8px;
+        border-radius: 999px;
+        background: rgba(34, 211, 238, 0.12);
+        border: 1px solid rgba(34, 211, 238, 0.28);
+        font-size: 11px;
+        color: #c9f7ff;
+      }
+      body[data-theme="light"] .cap {
+        color: #0e7490;
+      }
+      .price {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .arena-card {
+        display: grid;
+        gap: 6px;
+        align-content: start;
+      }
+      .arena-card p {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.5;
+        word-break: break-word;
+      }
+      .bars span {
+        display: block;
+        height: 8px;
+        border-radius: 9px;
+        margin: 4px 0 8px;
+        background: linear-gradient(90deg, var(--brand), var(--cyan));
+        transition: width 0.4s ease;
+      }
+      .bars small {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      /* ===== Assistant panel ===== */
+      .assistant {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        overflow: hidden;
+        transition: transform 0.24s cubic-bezier(0.32, 0.72, 0.35, 1), opacity 0.24s;
+      }
+      .assistant-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 16px;
+        border-bottom: 1px solid var(--line);
+        background: linear-gradient(135deg, rgba(124, 92, 255, 0.16), rgba(34, 211, 238, 0.14));
+        flex: 0 0 auto;
+        touch-action: none;
+      }
+      .messages {
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 14px;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+      }
+      .msg {
+        padding: 12px 14px;
+        border-radius: 18px;
+        line-height: 1.55;
+        font-size: 14.5px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        max-width: 100%;
+      }
+      .msg.user {
+        margin-left: 30px;
+        background: linear-gradient(135deg, rgba(124, 92, 255, 0.5), rgba(124, 92, 255, 0.3));
+        border-bottom-right-radius: 6px;
+      }
+      .msg.ai {
+        margin-right: 30px;
+        background: var(--soft);
+        border: 1px solid var(--line);
+        border-bottom-left-radius: 6px;
+      }
+      .msg.reasoning {
+        border-left: 3px solid var(--cyan);
+        background: rgba(34, 211, 238, 0.09);
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .msg pre {
+        background: #070911;
+        color: #e6ecff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px 12px;
+        overflow: auto;
+        font-family: var(--mono);
+        font-size: 12.5px;
+        line-height: 1.55;
+        white-space: pre;
+      }
+      .msg code {
+        font-family: var(--mono);
+        font-size: 0.92em;
+        background: rgba(124, 92, 255, 0.18);
+        border-radius: 6px;
+        padding: 1px 5px;
+      }
+      .msg pre code {
+        background: transparent;
+        padding: 0;
+      }
+      .msg-ctx {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 6px;
+      }
+      .msg-ctx .badge {
+        font-size: 11px;
+        padding: 4px 8px;
+      }
+      .thinking {
+        display: inline-flex;
+        gap: 5px;
+        padding: 4px 0;
+      }
+      .thinking i {
+        width: 7px;
+        height: 7px;
+        border-radius: 99px;
+        background: var(--muted);
+        animation: blink 1.2s infinite;
+      }
+      .thinking i:nth-child(2) { animation-delay: 0.2s; }
+      .thinking i:nth-child(3) { animation-delay: 0.4s; }
+      @keyframes blink {
+        0%, 80%, 100% { opacity: 0.25; }
+        40% { opacity: 1; }
+      }
+      .composer {
+        display: grid;
+        gap: 9px;
+        padding: 12px;
+        border-top: 1px solid var(--line);
+        background: rgba(6, 8, 15, 0.55);
+        flex: 0 0 auto;
+      }
+      body[data-theme="light"] .composer {
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .composer textarea {
+        min-height: 70px;
+        max-height: 160px;
+        resize: none;
+      }
+      .composer-row {
+        display: grid;
+        grid-template-columns: auto 1fr auto auto auto;
+        gap: 8px;
+        align-items: center;
+      }
+      .composer-row select {
+        width: auto;
+        min-height: 42px;
+      }
+      .composer-row .primary,
+      .composer-row .secondary {
+        min-width: 50px;
+      }
+      .slash-menu {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: calc(100% + 6px);
+        z-index: 30;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--panel-solid);
+        box-shadow: var(--shadow);
+        max-height: 280px;
+        overflow: auto;
+        display: grid;
+        padding: 6px;
+      }
+      .slash-menu button {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 11px 12px;
+        border-radius: 12px;
+        background: transparent;
+        text-align: left;
+        font-size: 14px;
+      }
+      .slash-menu button.active,
+      .slash-menu button:active {
+        background: rgba(124, 92, 255, 0.25);
+      }
+      .composer-shell {
+        position: relative;
+        display: grid;
+        gap: 8px;
+      }
+      .ctx-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .ctx-chips .badge {
+        cursor: pointer;
+      }
+
+      .status {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+        padding: 10px 16px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: var(--green);
+        box-shadow: 0 0 18px var(--green);
+        flex: 0 0 auto;
+      }
+      .dot.busy {
+        background: var(--amber);
+        box-shadow: 0 0 18px var(--amber);
+      }
+
+      /* ===== Toast / Modal / Sheet ===== */
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: calc(96px + var(--safe-b));
+        transform: translateX(-50%) translateY(20px);
+        z-index: 90;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.25s;
+        background: var(--panel-solid);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        box-shadow: var(--shadow);
+        padding: 12px 18px;
+        font-size: 13.5px;
+        max-width: min(92vw, 480px);
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+      }
+      .modal-inner {
+        width: min(760px, 100%);
+        max-height: 86dvh;
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        background: var(--panel-solid);
+        box-shadow: var(--shadow);
+        padding: 24px;
+        display: grid;
+        gap: 14px;
+      }
+      .sheet {
+        position: fixed;
+        inset: 0;
+        z-index: 70;
+        display: grid;
+        align-items: end;
+        background: rgba(0, 0, 0, 0.45);
+      }
+      .sheet-inner {
+        background: var(--panel-solid);
+        border: 1px solid var(--line);
+        border-bottom: 0;
+        border-radius: 26px 26px 0 0;
+        box-shadow: var(--shadow);
+        padding: 10px 16px calc(16px + var(--safe-b));
+        display: grid;
+        gap: 8px;
+        max-height: 72dvh;
+        overflow: auto;
+        animation: rise 0.26s cubic-bezier(0.32, 0.72, 0.35, 1);
+      }
+      @keyframes rise {
+        from { transform: translateY(40px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      .sheet-grab {
+        width: 44px;
+        height: 5px;
+        border-radius: 99px;
+        background: var(--soft2);
+        margin: 2px auto 8px;
+      }
+      .sheet-inner .action {
+        min-height: 52px;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      /* ===== FABs + mobile dock ===== */
+      .mobile-dock,
+      .assistant-fab,
+      .plus-fab {
+        display: none;
+      }
+      .autocomplete {
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        border: 1px solid rgba(34, 211, 238, 0.4);
+        border-radius: 14px;
+        background: rgba(10, 13, 26, 0.95);
+        box-shadow: var(--shadow);
+        padding: 10px 12px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: #dff7ff;
+        z-index: 5;
+        white-space: pre-wrap;
+      }
+      .autocomplete .hint {
+        color: var(--muted);
+        font-family: var(--sans);
+        font-size: 11px;
+      }
+      kbd {
+        font-family: var(--mono);
+        font-size: 11px;
+        border: 1px solid var(--line);
+        border-bottom-width: 2px;
+        border-radius: 6px;
+        padding: 1px 6px;
+        background: var(--soft);
+      }
+
+      /* ===== <1180px: collapse sidebar, assistant becomes overlay ===== */
+      @media (max-width: 1180px) {
+        .app {
+          grid-template-columns: 86px minmax(0, 1fr);
+        }
+        .sidebar {
+          align-items: center;
+          overflow: visible;
+        }
+        .brand h1,
+        .brand .subtitle,
+        .nav span,
+        .metric-grid,
+        .sidebar .side-extra {
+          display: none;
+        }
+        .sidebar .action {
+          width: 100%;
+          font-size: 0;
+          text-align: center;
+          padding: 12px 0;
+        }
+        .sidebar .action::first-letter {
+          font-size: 18px;
+        }
+        .assistant {
+          position: fixed;
+          inset: 14px 14px 14px auto;
+          width: min(430px, calc(100vw - 28px));
+          z-index: 45;
+        }
+        .assistant.collapsed {
+          transform: translateX(calc(100% + 26px));
+          opacity: 0;
+          pointer-events: none;
+        }
+        .assistant-fab {
+          display: grid;
+          position: fixed;
+          right: 18px;
+          bottom: calc(18px + var(--safe-b));
+          z-index: 46;
+          place-items: center;
+          width: 58px;
+          height: 58px;
+          border-radius: 999px;
+          box-shadow: var(--shadow);
+          font-weight: 800;
+        }
+      }
+
+      /* ===== iPhone-first (<760px) ===== */
+      @media (max-width: 760px) {
+        .app {
+          display: block;
+          height: 100dvh;
+          padding: 0;
+        }
+        .sidebar {
+          display: none;
+        }
+        .workspace {
+          height: 100dvh;
+          border-radius: 0;
+          border: 0;
+          padding-bottom: calc(64px + var(--safe-b) + var(--kb));
+        }
+        .topbar {
+          display: grid;
+          padding: calc(10px + var(--safe-t)) 12px 10px;
+          gap: 8px;
+        }
+        .topbar .toolbar {
+          display: none;
+        }
+        .tabs {
+          overflow-x: auto;
+          flex-wrap: nowrap;
+          scrollbar-width: none;
+        }
+        .tabs::-webkit-scrollbar {
+          display: none;
+        }
+        .view {
+          grid-template-columns: 1fr;
+          padding: 10px;
+          gap: 10px;
+          overflow: auto;
+        }
+        .card {
+          min-height: 40dvh;
+        }
+        .card.tall {
+          min-height: 62dvh;
+        }
+        .editor {
+          min-height: 42dvh;
+          font-size: 12.5px;
+          padding: 14px;
+        }
+        .editor-hl {
+          padding: 14px;
+          font-size: 12.5px;
+        }
+        .modebar {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 6px;
+        }
+        .modebar .mode {
+          min-width: 0;
+          text-align: center;
+          font-size: 12px;
+          padding: 9px 4px;
+          line-height: 1.3;
+        }
+        .modebar .mode .muted {
+          font-size: 10px;
+        }
+        #chatView .row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        #chatView .row .chip {
+          text-align: center;
+          font-size: 12.5px;
+          padding: 10px 6px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .status {
+          padding-right: 140px; /* room for the FABs */
+          font-size: 11px;
+        }
+        .quick {
+          width: 100%;
+          font-size: 14px;
+        }
+        .assistant {
+          inset: auto 0 calc(64px + var(--safe-b) + var(--kb)) 0;
+          width: auto;
+          height: min(58dvh, 520px);
+          border-radius: 24px 24px 0 0;
+          border-left: 0;
+          border-right: 0;
+          border-bottom: 0;
+        }
+        .assistant.collapsed {
+          transform: translateY(calc(100% + 90px));
+          opacity: 0;
+          pointer-events: none;
+        }
+        .assistant-head {
+          padding: 12px 16px;
+        }
+        .msg.user {
+          margin-left: 22px;
+        }
+        .msg.ai {
+          margin-right: 22px;
+        }
+        .mobile-dock {
+          display: grid;
+          position: fixed;
+          left: 8px;
+          right: 8px;
+          bottom: max(6px, var(--safe-b));
+          z-index: 60;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 4px;
+          padding: 6px;
+          border: 1px solid var(--line);
+          border-radius: 22px;
+          background: rgba(11, 13, 24, 0.9);
+          backdrop-filter: blur(20px) saturate(1.6);
+          -webkit-backdrop-filter: blur(20px) saturate(1.6);
+          box-shadow: var(--shadow);
+        }
+        body[data-theme="light"] .mobile-dock {
+          background: rgba(255, 255, 255, 0.92);
+        }
+        .mobile-dock button {
+          min-height: 50px;
+          border-radius: 16px;
+          background: transparent;
+          border: 1px solid transparent;
+          font-size: 10px;
+          display: grid;
+          place-items: center;
+          gap: 1px;
+          color: var(--muted);
+        }
+        .mobile-dock button b {
+          font-size: 17px;
+          font-weight: 400;
+        }
+        .mobile-dock button.active {
+          background: linear-gradient(135deg, rgba(124, 92, 255, 0.4), rgba(34, 211, 238, 0.18));
+          border-color: rgba(124, 92, 255, 0.6);
+          color: var(--text);
+        }
+        .assistant-fab {
+          right: 14px;
+          bottom: calc(80px + var(--safe-b) + var(--kb));
+        }
+        .plus-fab {
+          display: grid;
+          position: fixed;
+          left: 14px;
+          bottom: calc(80px + var(--safe-b) + var(--kb));
+          z-index: 46;
+          place-items: center;
+          width: 58px;
+          height: 58px;
+          border-radius: 999px;
+          box-shadow: var(--shadow);
+          font-size: 22px;
+        }
+        .filterbar {
+          overflow-x: auto;
+          flex-wrap: nowrap;
+          scrollbar-width: none;
+        }
+        .filterbar::-webkit-scrollbar {
+          display: none;
+        }
+        .filterbar button {
+          white-space: nowrap;
+          flex: 0 0 auto;
+        }
+        .model-grid,
+        .arena-grid,
+        .settings-grid {
+          grid-template-columns: 1fr !important;
+        }
+        .composer-row {
+          grid-template-columns: auto 1fr auto auto auto;
+        }
+        .composer-row select {
+          max-width: 108px;
+        }
+        .modal {
+          padding: 12px;
+        }
+        .modal-inner {
+          border-radius: 22px;
+          padding: 18px;
+        }
+        .primary,
+        .secondary,
+        .ghost {
+          min-height: 46px; /* comfortable iOS touch targets */
+        }
+      }
+      @media (min-width: 761px) and (max-width: 1180px) {
+        .model-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (min-width: 900px) {
+        .settings-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .arena-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .model-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (min-width: 1400px) {
+        .model-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
     </style>
   </head>
   <body>
-    <div class="app">
-      <aside class="panel sidebar"><div class="brand"><div class="logo"></div><div><h1>AI Workbench</h1><p class="subtitle">Local + OpenRouter</p></div></div><nav class="nav" aria-label="Sections"><button class="active" data-view="chat">💬 <span>Chat</span></button><button data-view="models">🔥 <span>Models</span></button><button data-view="workspace">💻 <span>Workspace</span></button><button data-view="arena">🥊 <span>Arena</span></button><button data-view="history">📊 <span>History</span></button><button data-view="settings">⚙ <span>Power</span></button></nav><div class="metric-grid"><div class="metric"><b id="fileCount">0</b><span>files</span></div><div class="metric"><b id="modelCount">0</b><span>models</span></div><div class="metric"><b id="costMetric">$0</b><span>est. cost</span></div><div class="metric"><b id="modeMetric">Chat</b><span>mode</span></div></div><button class="action" id="exportBtn">⬇ Export workspace</button><button class="action" id="importBtn">⬆ Import JSON</button><input id="importFile" type="file" accept="application/json" hidden /></aside>
-      <main class="panel workspace"><div class="topbar"><div><h2 id="viewTitle">Chat Workbench</h2><div class="tabs"><span class="pill" id="miniProvider">Ollama/local</span><span class="pill" id="miniModel">auto</span><span class="pill">Chat · Plan · Agent</span><span class="pill">Dynamic catalog</span></div></div><div class="toolbar"><button class="secondary" id="toggleAssistant">Show assistant</button><button class="secondary" id="newFile">New file</button><button class="primary" id="plusBtn">+ Actions</button></div></div>
-        <section class="view" id="chatView"><div class="card"><header><span>Mode + provider</span><span id="readyState">ready</span></header><div class="scroll stack"><div class="modebar"><button class="mode active" data-mode="chat">💬 Chat<br><span class="muted">conversation only</span></button><button class="mode" data-mode="plan">🗺️ Plan<br><span class="muted">read-only inspect/search</span></button><button class="mode" data-mode="agent">🤖 Agent<br><span class="muted">approval-gated edits</span></button></div><div class="row"><label class="chip active"><input type="radio" name="provider" value="ollama" checked /> Ollama — Local</label><label class="chip"><input type="radio" name="provider" value="openrouter" /> OpenRouter — Cloud</label></div><div class="cardlet"><strong>Transparent AUTO router</strong><p class="muted" id="autoAnalysis">Type a task to score coding, reasoning, context, and speed needs. AUTO can use OpenRouter's router or pick from loaded model metadata.</p><div class="bars" id="autoBars"></div></div><textarea id="mainPrompt" rows="8" placeholder="Ask anything, e.g. Refactor this component, compare models, generate an HTML game, or plan an agent task..."></textarea><button class="primary" id="sendMain">Send to selected mode</button></div></div><div class="card"><header>Phone-first quick actions</header><div class="scroll stack"><button class="quick" data-quick="New chat">＋ New chat</button><button class="quick" data-quick="Generate HTML app">🌐 Generate HTML</button><button class="quick" data-quick="Open agent">🤖 Open agent</button><button class="quick" data-quick="Compare models">🥊 Compare models</button><button class="quick" data-quick="Import file">📎 Import file</button><button class="quick" data-quick="Run benchmark">📊 Run benchmark</button></div></div></section>
-        <section class="view hidden" id="modelsView"><div class="card wide"><header><span>Dynamic OpenRouter catalog</span><span id="catalogState">not connected</span></header><div class="scroll stack"><div class="settings-grid"><label>OpenRouter API key <input id="openRouterKey" type="password" placeholder="sk-or-v1-… kept in memory unless remembered" /></label><label>Provider endpoint <input id="ollamaUrl" placeholder="http://127.0.0.1:11434/v1/chat/completions" /></label><label><input id="rememberKey" type="checkbox" /> 🔒 Remember key on this device <span class="muted">(less secure than a backend)</span></label><button class="primary" id="connectOpenRouter">Connect + load catalog</button><button class="secondary" id="clearKey">Forget API key</button></div><div class="filterbar" id="modelFilters"></div><input id="modelSearch" placeholder="Search loaded catalog: kimi, deepseek, qwen, claude, free, vision..." /><div class="model-grid" id="modelGrid"></div></div></div></section>
-        <section class="view hidden" id="workspaceView"><div class="card"><header><span id="activePath">src/app.js</span><span><button class="ghost" id="aiEditBtn">✨ AI Edit</button></span></header><div style="position:relative;height:100%"><textarea id="editor" class="editor" spellcheck="false"></textarea><div class="autocomplete hidden" id="autocompleteBox"></div></div></div><div class="card"><header>Project awareness</header><div class="scroll stack"><div class="filetree" id="fileTree"></div><div class="cardlet"><strong>Context pack</strong><p class="muted" id="contextPack"></p></div><div class="cardlet"><strong>Edit diff</strong><div class="diff" id="diffBox">Select code or click ✨ AI Edit to propose a patch.</div><div class="row"><button class="primary" id="acceptDiff">✓ Accept</button><button class="secondary" id="rejectDiff">✕ Reject</button><button class="ghost" id="undoDiff">↶ Undo</button></div></div></div></div></section>
-        <section class="view hidden" id="arenaView"><div class="card wide"><header><span>Multi-model Arena</span><span id="arenaState">idle</span></header><div class="scroll stack"><textarea id="arenaPrompt" rows="5" placeholder="Same prompt sent to selected models..."></textarea><div class="row"><select id="arenaA"></select><select id="arenaB"></select><select id="arenaC"></select></div><div class="row"><button class="primary" id="runArena">RUN ARENA</button><button class="secondary" id="judgeArena">🏆 Ask Judge Model</button></div><div class="arena-grid" id="arenaResults"></div></div></div></section>
-        <section class="view hidden" id="historyView"><div class="card"><header>Performance / cost history</header><div class="scroll cards" id="historyList"></div></div><div class="card"><header>Research / reasoning blocks</header><div class="scroll stack"><textarea id="researchPrompt" rows="5" placeholder="Research topic or implementation uncertainty..."></textarea><button class="primary" id="makeResearch">Create visible reasoning block</button><div class="cards" id="researchCards"></div></div></div></section>
-        <section class="view hidden" id="settingsView"><div class="card wide"><header>Power Mode settings</header><div class="scroll settings-grid"><label>Model <select id="primaryModel"></select></label><label>Fallback model <select id="fallbackModel"></select></label><label>Autocomplete model <select id="autocompleteModel"></select></label><label>Reasoning <select id="reasoningLevel"><option>off</option><option>low</option><option selected>medium</option><option>high</option><option>maximum</option></select></label><label>Temperature <input id="temperature" type="number" min="0" max="2" step="0.1" /></label><label>Top P <input id="topP" type="number" min="0" max="1" step="0.05" /></label><label>Top K <input id="topK" type="number" min="0" step="1" /></label><label>Max output <input id="maxTokens" type="number" min="1" step="128" /></label><label>Context size <input id="contextSize" type="number" min="1" step="1024" /></label><label>Seed <input id="seedValue" type="number" /></label><label>Routing preference <select id="routingPref"><option>quality</option><option>latency</option><option>price</option><option>privacy</option></select></label><label>Fallback behavior <select id="fallbackBehavior"><option>ask</option><option>auto-fallback</option><option>stop</option></select></label><label><input id="agentApproval" type="checkbox" checked /> Require approval before writes/commands</label><label><input id="allowWrites" type="checkbox" /> Allow file writes in Agent</label><label><input id="allowCommands" type="checkbox" /> Allow commands in packaged desktop bridge</label><label><input id="autoTest" type="checkbox" /> Auto-test after edits</label><label><input id="compactMode" type="checkbox" /> Compact phone mode</label><label><input id="animations" type="checkbox" checked /> Animations</label><label>History retention <select id="retention"><option>session</option><option selected>30 days</option><option>forever</option></select></label></div></div></section>
-        <div class="status"><span class="dot"></span><span id="statusText">Memory-key by default. Connect OpenRouter or Ollama/local runtime when ready.</span></div>
+    <div class="app" id="appRoot">
+      <!-- ============ SIDEBAR (desktop / tablet) ============ -->
+      <aside class="panel sidebar">
+        <div class="brand">
+          <div class="logo"></div>
+          <div>
+            <h1>ForgePilot Local</h1>
+            <p class="subtitle">Continue.dev · iOS-first</p>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Sections">
+          <button class="active" data-view="chat">💬 <span>Chat</span></button>
+          <button data-view="models">🔥 <span>Models</span></button>
+          <button data-view="workspace">💻 <span>Workspace</span></button>
+          <button data-view="arena">🥊 <span>Arena</span></button>
+          <button data-view="docs">📚 <span>Docs</span></button>
+          <button data-view="agents">🧩 <span>Agents</span></button>
+          <button data-view="history">📊 <span>History</span></button>
+          <button data-view="settings">⚙️ <span>Settings</span></button>
+        </nav>
+        <div class="metric-grid">
+          <div class="metric"><b id="fileCount">0</b><span>files</span></div>
+          <div class="metric"><b id="modelCount">0</b><span>models</span></div>
+          <div class="metric"><b id="costMetric">$0</b><span>est. cost</span></div>
+          <div class="metric"><b id="modeMetric">Chat</b><span>mode</span></div>
+        </div>
+        <button class="action" id="exportBtn">⬇️ Export workspace</button>
+        <button class="action" id="importBtn">⬆️ Import JSON</button>
+        <button class="action side-extra" id="configBtn">🧾 Continue config</button>
+        <input id="importFile" type="file" accept="application/json" hidden />
+      </aside>
+
+      <!-- ============ WORKSPACE (main column) ============ -->
+      <main class="panel workspace" id="workspacePanel">
+        <div class="topbar">
+          <div>
+            <h2 id="viewTitle">Chat Workbench</h2>
+            <div class="tabs">
+              <span class="pill" id="miniProvider">Ollama/local</span>
+              <span class="pill" id="miniModel">auto</span>
+              <span class="pill" id="miniMode">Chat</span>
+              <span class="pill">Continue parity</span>
+            </div>
+          </div>
+          <div class="toolbar">
+            <button class="secondary" id="toggleAssistant">Show assistant</button>
+            <button class="secondary" id="newFile">New file</button>
+            <button class="primary" id="plusBtn">＋ Actions</button>
+          </div>
+        </div>
+
+        <!-- CHAT VIEW -->
+        <section class="view" id="chatView">
+          <div class="card tall">
+            <header><span>Mode + provider</span><span id="readyState">ready</span></header>
+            <div class="scroll stack">
+              <div class="modebar" role="tablist" aria-label="Mode">
+                <button class="mode active" data-mode="chat">💬 Chat<br /><span class="muted">conversation</span></button>
+                <button class="mode" data-mode="plan">🗺️ Plan<br /><span class="muted">read-only</span></button>
+                <button class="mode" data-mode="edit">✏️ Edit<br /><span class="muted">inline diffs</span></button>
+                <button class="mode" data-mode="agent">🤖 Agent<br /><span class="muted">tool loop</span></button>
+              </div>
+              <div class="row">
+                <label class="chip active"><input type="radio" name="provider" value="ollama" checked /> 🏠 Ollama · Local</label>
+                <label class="chip"><input type="radio" name="provider" value="openrouter" /> ☁️ OpenRouter · Cloud</label>
+              </div>
+              <div class="cardlet">
+                <strong>🧭 Transparent AUTO router</strong>
+                <p class="muted" id="autoAnalysis">
+                  Type a task to score coding, reasoning, context and speed needs.
+                </p>
+                <div class="bars" id="autoBars"></div>
+              </div>
+              <textarea
+                id="mainPrompt"
+                rows="7"
+                placeholder="Ask anything — refactor this component, generate an HTML game, compare models, or let the Agent edit your files…"
+              ></textarea>
+              <button class="primary" id="sendMain">Send to selected mode</button>
+            </div>
+          </div>
+          <div class="card">
+            <header>📱 Phone-first quick actions</header>
+            <div class="scroll stack">
+              <button class="quick" data-quick="newchat">＋ New chat</button>
+              <button class="quick" data-quick="html">🌐 Generate HTML app</button>
+              <button class="quick" data-quick="agent">🤖 Open agent</button>
+              <button class="quick" data-quick="arena">🥊 Compare models</button>
+              <button class="quick" data-quick="import">📎 Import file</button>
+              <button class="quick" data-quick="preview">👁️ Preview HTML</button>
+              <button class="quick" data-quick="share">📤 Share chat</button>
+              <button class="quick" data-quick="rules">📜 Edit rules</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- MODELS VIEW -->
+        <section class="view hidden" id="modelsView">
+          <div class="card wide tall">
+            <header><span>Dynamic model catalog</span><span id="catalogState">not connected</span></header>
+            <div class="scroll stack" id="modelsScroll">
+              <div class="settings-grid">
+                <label>OpenRouter API key
+                  <input id="openRouterKey" type="password" placeholder="sk-or-v1-… memory-only unless remembered" autocomplete="off" />
+                </label>
+                <label>Local provider endpoint (OpenAI-compatible)
+                  <input id="ollamaUrl" placeholder="http://127.0.0.1:11434/v1/chat/completions" inputmode="url" />
+                </label>
+                <label><input id="rememberKey" type="checkbox" /> 🔒 Remember key on this device <span class="muted">(less secure)</span></label>
+                <button class="primary" id="connectOpenRouter">Connect + load catalog</button>
+                <button class="secondary" id="detectLocal">🔎 Detect local models (Ollama / LM Studio)</button>
+                <button class="secondary" id="clearKey">Forget API key</button>
+              </div>
+              <div class="filterbar" id="modelFilters"></div>
+              <input id="modelSearch" placeholder="Search catalog: kimi, deepseek, qwen, claude, free, vision…" />
+              <p class="muted">💡 Pull down to refresh the catalog. Tap a card to make it your primary model.</p>
+              <div class="model-grid" id="modelGrid"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- WORKSPACE VIEW -->
+        <section class="view hidden" id="workspaceView">
+          <div class="card tall">
+            <header>
+              <span id="activePath">src/app.js</span>
+              <span class="row">
+                <button class="ghost" id="aiEditBtn" title="AI edit (Continue inline edit)">✨ AI Edit</button>
+                <button class="ghost" id="previewBtn" title="Live HTML preview">👁️</button>
+                <button class="ghost" id="syntaxBtn" title="Toggle syntax highlighting">🎨</button>
+              </span>
+            </header>
+            <div class="editor-wrap">
+              <pre class="editor-hl hidden" id="editorHl" aria-hidden="true"></pre>
+              <textarea id="editor" class="editor" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+              <div class="autocomplete hidden" id="autocompleteBox"></div>
+            </div>
+          </div>
+          <div class="card">
+            <header>Project awareness</header>
+            <div class="scroll stack">
+              <div class="filetree" id="fileTree"></div>
+              <button class="secondary" id="newFile2">＋ New file</button>
+              <div class="cardlet"><strong>Context pack</strong><p class="muted" id="contextPack"></p></div>
+              <div class="cardlet">
+                <strong>Edit diff</strong>
+                <div class="diff" id="diffBox">Tap ✨ AI Edit to get a real LLM-powered rewrite of the current file, then review here.</div>
+                <div class="row" style="margin-top:8px">
+                  <button class="primary" id="acceptDiff">✓ Accept</button>
+                  <button class="secondary" id="rejectDiff">✕ Reject</button>
+                  <button class="ghost" id="undoDiff">↶ Undo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ARENA VIEW -->
+        <section class="view hidden" id="arenaView">
+          <div class="card wide tall">
+            <header><span>Multi-model Arena</span><span id="arenaState">idle</span></header>
+            <div class="scroll stack">
+              <textarea id="arenaPrompt" rows="4" placeholder="Same prompt sent to the selected models — compare latency, quality and cost…"></textarea>
+              <div class="row">
+                <select id="arenaA" aria-label="Model A"></select>
+                <select id="arenaB" aria-label="Model B"></select>
+                <select id="arenaC" aria-label="Model C"></select>
+              </div>
+              <div class="row">
+                <button class="primary" id="runArena">🏁 RUN ARENA</button>
+                <button class="secondary" id="judgeArena">🏆 Ask judge model</button>
+              </div>
+              <div class="arena-grid" id="arenaResults"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- DOCS VIEW (Continue @Docs parity) -->
+        <section class="view hidden" id="docsView">
+          <div class="card tall">
+            <header><span>📚 Docs indexes (@Docs)</span><span id="docsState">0 indexed</span></header>
+            <div class="scroll stack">
+              <div class="row">
+                <input id="docsUrl" placeholder="Docs URL, e.g. https://react.dev/reference" inputmode="url" />
+                <button class="primary" id="addDoc">Index</button>
+              </div>
+              <p class="muted">Indexed pages become @Docs context in chat. On CORS-friendly sites the live page text is fetched; otherwise the index entry is kept as a reference for the model.</p>
+              <div class="cards" id="docsList"></div>
+            </div>
+          </div>
+          <div class="card">
+            <header>📜 Rules (Continue rules parity)</header>
+            <div class="scroll stack">
+              <p class="muted">Rules are injected into every system prompt — like <code>.continue/rules</code>.</p>
+              <div class="cards" id="rulesList"></div>
+              <div class="row">
+                <input id="newRule" placeholder="e.g. Always write TypeScript, prefer named exports" />
+                <button class="secondary" id="addRule">＋ Add</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- AGENTS VIEW (Continue Hub custom agents parity) -->
+        <section class="view hidden" id="agentsView">
+          <div class="card tall">
+            <header><span>🧩 Custom agents</span><span id="agentsState"></span></header>
+            <div class="scroll stack">
+              <p class="muted">Custom agents bundle a name, system prompt and preferred model — like agents on the Continue hub. Tap Use to make one active.</p>
+              <div class="cards" id="agentsList"></div>
+            </div>
+          </div>
+          <div class="card">
+            <header>Agent creator</header>
+            <div class="scroll stack">
+              <label>Name <input id="agentName" placeholder="e.g. iOS Swift Mentor" /></label>
+              <label>System prompt
+                <textarea id="agentPrompt" rows="4" placeholder="You are an expert Swift/SwiftUI mentor. Give concise, correct answers with code samples…"></textarea>
+              </label>
+              <label>Model <select id="agentModel"></select></label>
+              <button class="primary" id="createAgent">✨ Create agent</button>
+              <hr style="border:0;border-top:1px solid var(--line);width:100%" />
+              <p class="muted">🧾 Continue config — import/export a <code>config.json</code>-style file with models, rules, docs and agents.</p>
+              <div class="row">
+                <button class="secondary" id="exportConfig">Export config</button>
+                <button class="secondary" id="importConfig">Import config</button>
+                <input id="importConfigFile" type="file" accept="application/json" hidden />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- HISTORY VIEW -->
+        <section class="view hidden" id="historyView">
+          <div class="card tall">
+            <header><span>Performance / cost history</span><span id="historyState"></span></header>
+            <div class="scroll cards" id="historyList"></div>
+          </div>
+          <div class="card">
+            <header>Research / reasoning blocks</header>
+            <div class="scroll stack">
+              <textarea id="researchPrompt" rows="4" placeholder="Research topic or implementation uncertainty — get a visible reasoning block…"></textarea>
+              <button class="primary" id="makeResearch">🧠 Create reasoning block</button>
+              <div class="cards" id="researchCards"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SETTINGS VIEW -->
+        <section class="view hidden" id="settingsView">
+          <div class="card wide tall">
+            <header>⚙️ Power settings</header>
+            <div class="scroll settings-grid">
+              <label>Primary model <select id="primaryModel"></select></label>
+              <label>Fallback model <select id="fallbackModel"></select></label>
+              <label>Autocomplete model <select id="autocompleteModel"></select></label>
+              <label>Judge model <select id="judgeModel"></select></label>
+              <label>Reasoning effort
+                <select id="reasoningLevel">
+                  <option>off</option><option>low</option><option selected>medium</option><option>high</option><option>maximum</option>
+                </select>
+              </label>
+              <label>Temperature <input id="temperature" type="number" min="0" max="2" step="0.1" /></label>
+              <label>Top P <input id="topP" type="number" min="0" max="1" step="0.05" /></label>
+              <label>Top K <input id="topK" type="number" min="0" step="1" /></label>
+              <label>Max output tokens <input id="maxTokens" type="number" min="1" step="128" /></label>
+              <label>Context size <input id="contextSize" type="number" min="1" step="1024" /></label>
+              <label>Seed <input id="seedValue" type="number" /></label>
+              <label>Routing preference
+                <select id="routingPref"><option>quality</option><option>latency</option><option>price</option><option>privacy</option></select>
+              </label>
+              <label>Fallback behavior
+                <select id="fallbackBehavior"><option>ask</option><option>auto-fallback</option><option>stop</option></select>
+              </label>
+              <label>Theme
+                <select id="themePref"><option value="dark">🌙 Dark</option><option value="light">☀️ Light</option></select>
+              </label>
+              <label>History retention
+                <select id="retention"><option>session</option><option selected>30 days</option><option>forever</option></select>
+              </label>
+              <label><input id="streamResponses" type="checkbox" checked /> 🌊 Stream responses</label>
+              <label><input id="agentApproval" type="checkbox" checked /> Require approval before writes/tools</label>
+              <label><input id="allowWrites" type="checkbox" /> Allow file writes in Agent</label>
+              <label><input id="hapticsToggle" type="checkbox" checked /> 📳 Haptic feedback</label>
+              <label><input id="syntaxHl" type="checkbox" /> 🎨 Syntax highlighting in editor</label>
+              <label><input id="autoTest" type="checkbox" /> Auto-lint after edits</label>
+              <label><input id="compactMode" type="checkbox" /> Compact phone mode</label>
+              <label><input id="animations" type="checkbox" checked /> Animations</label>
+            </div>
+          </div>
+        </section>
+
+        <div class="status">
+          <span class="dot" id="statusDot"></span>
+          <span id="statusText">Memory-key by default. Connect OpenRouter or a local runtime when ready.</span>
+        </div>
       </main>
-      <aside class="panel assistant collapsed" id="assistantPanel"><div class="assistant-head"><div><h2>Assistant</h2><p class="subtitle">Chat · Plan · Agent · Edit · Arena</p></div><button class="ghost" id="closeAssistant">Put aside</button></div><div class="messages" id="messages"></div><div class="composer"><textarea id="prompt" placeholder="Ask, /plan, /agent, /edit, /arena, /research"></textarea><div class="composer-row"><select id="chatProvider"><option value="auto">AUTO</option><option value="ollama">Ollama/local</option><option value="openrouter">OpenRouter</option></select><button class="primary" id="sendPrompt">Send</button></div></div></aside>
-    </div><button class="primary assistant-fab" id="assistantFab">AI</button><button class="primary plus-fab" id="mobilePlus">+</button><nav class="mobile-dock"><button data-view="chat">Chat</button><button data-view="models">Models</button><button data-view="workspace">Code</button><button data-view="arena">Arena</button><button data-view="history">Hist</button></nav><div class="toast" id="toast"></div><div class="modal" id="welcome"><div class="modal-inner"><h2>Local + OpenRouter AI Workbench V1.2</h2><p>A serious next step: dynamic model catalog, AUTO model selection, Chat/Plan/Agent modes, Continue-style edit/autocomplete, model arena, project context, phone-first controls, Ollama/local runtime, and memory-first API key security.</p><button class="primary" id="startBtn">Launch workbench</button></div></div>
+
+      <!-- ============ ASSISTANT PANEL ============ -->
+      <aside class="panel assistant collapsed" id="assistantPanel" aria-label="Assistant">
+        <div class="assistant-head">
+          <div>
+            <h2 id="assistantTitle">Assistant</h2>
+            <p class="subtitle" id="assistantSub">Chat · Plan · Edit · Agent · Arena</p>
+          </div>
+          <button class="ghost" id="closeAssistant">Put aside</button>
+        </div>
+        <div class="messages" id="messages"></div>
+        <div class="composer">
+          <div class="composer-shell">
+            <div class="slash-menu hidden" id="slashMenu"></div>
+            <div class="ctx-chips" id="ctxChips"></div>
+            <textarea id="prompt" placeholder="Ask — or type / for commands, @ for context"></textarea>
+          </div>
+          <div class="composer-row">
+            <select id="chatProvider" aria-label="Provider">
+              <option value="auto">AUTO</option>
+              <option value="ollama">Ollama</option>
+              <option value="openrouter">OpenRouter</option>
+            </select>
+            <span></span>
+            <button class="secondary" id="micBtn" title="Voice input">🎙️</button>
+            <button class="secondary hidden" id="stopBtn" title="Stop generating">⏹</button>
+            <button class="primary" id="sendPrompt">Send</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <button class="primary assistant-fab" id="assistantFab" aria-label="Open assistant">✨</button>
+    <button class="primary plus-fab" id="mobilePlus" aria-label="Actions">＋</button>
+
+    <nav class="mobile-dock" aria-label="Mobile navigation">
+      <button class="active" data-view="chat"><b>💬</b>Chat</button>
+      <button data-view="models"><b>🔥</b>Models</button>
+      <button data-view="workspace"><b>💻</b>Code</button>
+      <button data-view="arena"><b>🥊</b>Arena</button>
+      <button data-view="docs"><b>📚</b>Docs</button>
+      <button data-view="settings"><b>⚙️</b>More</button>
+    </nav>
+
+    <div class="toast" id="toast" role="status"></div>
+
+    <div class="modal" id="welcome">
+      <div class="modal-inner">
+        <h2>ForgePilot Local · Continue.dev Workbench</h2>
+        <p class="muted" style="font-size:14px;line-height:1.6">
+          A single-file, iPhone-first AI workbench with the real Continue.dev feature set:
+          <b>Chat / Plan / Edit / Agent modes</b>, <b>streaming</b>, <b>tool calling</b>,
+          <b>autocomplete</b>, <b>@Docs</b>, <b>custom agents</b>, <b>rules</b>, <b>model arena</b>,
+          <b>voice input</b>, <b>haptics</b>, <b>live HTML preview</b> and <b>PWA install</b> —
+          powered by Ollama locally or OpenRouter cloud.
+        </p>
+        <p class="muted">Tip: swipe left/right on the workspace to switch views. Add to Home Screen for a full-screen app feel.</p>
+        <button class="primary" id="startBtn">🚀 Launch workbench</button>
+      </div>
+    </div>
+
+    <div class="sheet hidden" id="actionSheet">
+      <div class="sheet-inner" id="actionSheetInner">
+        <div class="sheet-grab"></div>
+      </div>
+    </div>
+
     <script>
-      const $=(s)=>document.querySelector(s);const $$=(s)=>[...document.querySelectorAll(s)];const esc=(v)=>String(v??"").replace(/[&<>"']/g,(c)=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));const storeKey="local-ai-workbench-v1.2";let sessionKey="";
-      const fallbackModels=[{id:"openrouter/auto",name:"OpenRouter Auto",context_length:0,pricing:{prompt:"0",completion:"0"},supported_parameters:["temperature","top_p","max_tokens"],input_modalities:["text"],description:"Dynamic OpenRouter auto router."},{id:"openrouter/free",name:"OpenRouter Free",context_length:0,pricing:{prompt:"0",completion:"0"},supported_parameters:["temperature","tools"],input_modalities:["text"],description:"Routes to available free models."}];
-      const filters=[['newest','Newest','sort=newest'],['overall','Best Overall','sort=intelligence-high-to-low'],['coding','Best Coding','sort=coding-high-to-low'],['reasoning','Best Reasoning','supported_parameters=reasoning'],['fastest','Fastest','sort=latency-low-to-high'],['cheapest','Cheapest','sort=pricing-low-to-high'],['context','Largest Context','sort=context-high-to-low'],['multimodal','Multimodal','input_modalities=text,image'],['tools','Tool Calling','supported_parameters=tools'],['free','Free','max_price=0']];
-      const seed={active:"src/app.js",mode:"chat",provider:"ollama",selectedModel:"openrouter/auto",fallbackModel:"openrouter/free",autocompleteModel:"openrouter/free",models:fallbackModels,catalogFilter:"newest",history:[],research:[],rememberKey:false,ollamaUrl:"http://127.0.0.1:11434/v1/chat/completions",settings:{temperature:.4,topP:.9,topK:40,maxTokens:2048,contextSize:128000,seed:0,reasoning:"medium",routing:"quality",fallback:"ask",approval:true,writes:false,commands:false,autoTest:false,compact:false,animations:true,retention:"30 days"},files:{"src/app.js":"function hello(name) {\n  return `Welcome, ${name}!`;\n}\n\nconsole.log(hello(\"builder\"));\n","index.html":"<main id=\"app\"></main>\n<script src=\"src/app.js\"><\/script>\n","README.md":"# Local AI Workbench\n\nA browser-first coding and model laboratory.\n"},pendingDiff:null,lastFileSnapshot:null};
-      let state=Object.assign({},seed,JSON.parse(localStorage.getItem(storeKey)||"null")||{});if(state.rememberKey)sessionKey=localStorage.getItem(storeKey+"-key")||"";
-      const save=()=>{const copy={...state};localStorage.setItem(storeKey,JSON.stringify(copy));if(state.rememberKey&&sessionKey)localStorage.setItem(storeKey+"-key",sessionKey);};const toast=(m)=>{const t=$("#toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800)};
-      const money=(v)=>{const n=Number(v||0);return n?`$${(n*1000000).toFixed(3)}/M`:"free/varies"};const caps=(m)=>{const p=m.supported_parameters||[],mods=m.input_modalities||m.architecture?.input_modalities||[];return [p.includes("reasoning")&&"Reasoning",p.includes("tools")&&"Tools",p.includes("response_format")&&"Structured",mods.includes("image")&&"Vision",(m.context_length||0)>=1000000&&"1M Context",(m.context_length||0)>=128000&&"Long Context",/code|coder|dev|program|agent/i.test(`${m.name} ${m.id} ${m.description||""}`)&&"Coding"].filter(Boolean)};
-      function render(){const models=state.models?.length?state.models:fallbackModels;$("#fileCount").textContent=Object.keys(state.files).length;$("#modelCount").textContent=models.length;$("#modeMetric").textContent=state.mode[0].toUpperCase()+state.mode.slice(1);$("#miniProvider").textContent=state.provider==="openrouter"?"OpenRouter cloud":"Ollama/local";$("#miniModel").textContent=state.selectedModel;$("#openRouterKey").value=sessionKey;$("#rememberKey").checked=!!state.rememberKey;$("#ollamaUrl").value=state.ollamaUrl;$("#modelSearch").value=$("#modelSearch").value||"";$("#modelFilters").innerHTML=filters.map(([id,label])=>`<button class="chip ${state.catalogFilter===id?'active':''}" data-filter="${id}">${label}</button>`).join("");renderModels();renderSelects();$("#activePath").textContent=state.active;$("#editor").value=state.files[state.active]||"";$("#fileTree").innerHTML=Object.keys(state.files).map(p=>`<button class="file ${p===state.active?'active':''}" data-file="${esc(p)}"><strong>${esc(p)}</strong><span class="muted">${state.files[p].split('\n').length} lines</span></button>`).join("");$("#contextPack").textContent=contextPack();$("#historyList").innerHTML=state.history.map(h=>`<div class="cardlet"><strong>${esc(h.title)}</strong><p class="muted">${esc(h.meta)}</p><p>${esc(h.body)}</p></div>`).join("")||'<p class="muted">No runs yet.</p>';$("#researchCards").innerHTML=state.research.map(r=>`<div class="cardlet reasoning"><strong>${esc(r.title)}</strong><p class="muted">${esc(r.body)}</p></div>`).join("")||'<p class="muted">No reasoning blocks yet.</p>';$$('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===state.mode));$$('input[name=provider]').forEach(r=>{r.checked=r.value===state.provider;r.closest('.chip')?.classList.toggle('active',r.checked)});$("#temperature").value=state.settings.temperature;$("#topP").value=state.settings.topP;$("#topK").value=state.settings.topK;$("#maxTokens").value=state.settings.maxTokens;$("#contextSize").value=state.settings.contextSize;$("#seedValue").value=state.settings.seed;$("#reasoningLevel").value=state.settings.reasoning;$("#routingPref").value=state.settings.routing;$("#fallbackBehavior").value=state.settings.fallback;$("#agentApproval").checked=state.settings.approval;$("#allowWrites").checked=state.settings.writes;$("#allowCommands").checked=state.settings.commands;$("#autoTest").checked=state.settings.autoTest;$("#compactMode").checked=state.settings.compact;$("#animations").checked=state.settings.animations;$("#retention").value=state.settings.retention;document.body.style.fontSize=state.settings.compact?'14px':'';analyzeTask($("#mainPrompt")?.value||"");}
-      function renderModels(){const q=($("#modelSearch")?.value||"").toLowerCase();let models=(state.models||fallbackModels).filter(m=>`${m.id} ${m.name||''} ${m.description||''}`.toLowerCase().includes(q));$("#modelGrid").innerHTML=models.slice(0,80).map(m=>`<button class="model-card ${m.id===state.selectedModel?'selected':''}" data-model="${m.id}"><strong>${esc(m.name||m.id)}</strong><span class="muted">${esc(m.id)}</span><div>${caps(m).map(c=>`<span class="cap">✓ ${c}</span>`).join('')||'<span class="cap">metadata</span>'}</div><span class="muted">${((m.context_length||0)/1000).toFixed(0)}k context · ${esc(m.supported_parameters?.slice(0,5).join(', ')||'provider defaults')}</span><span class="price">${money(m.pricing?.prompt)} input · ${money(m.pricing?.completion)} output</span></button>`).join("")||'<p class="muted">No models match. Load the live catalog or adjust filters.</p>';}
-      function renderSelects(){const opts=(state.models||fallbackModels).map(m=>`<option value="${m.id}">${m.name||m.id}</option>`).join("");['primaryModel','fallbackModel','autocompleteModel','arenaA','arenaB','arenaC'].forEach(id=>{$('#'+id).innerHTML=opts});$('#primaryModel').value=state.selectedModel;$('#fallbackModel').value=state.fallbackModel;$('#autocompleteModel').value=state.autocompleteModel;$('#arenaA').value=state.selectedModel;$('#arenaB').value=state.fallbackModel;$('#arenaC').value=state.autocompleteModel;}
-      function switchView(v){$$('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));['chat','models','workspace','arena','history','settings'].forEach(id=>$('#'+id+'View')?.classList.toggle('hidden',id!==v));$('#viewTitle').textContent={chat:'Chat Workbench',models:'Latest Models',workspace:'AI Coding Workbench',arena:'Multi-model Arena',history:'History + Research',settings:'Power Mode'}[v];}
-      function contextPack(){const files=Object.keys(state.files),recent=files.slice(-4).join(', '),imports=($('#editor').value.match(/(?:import|from|require\()[^\n]+/g)||[]).slice(0,4).join(' | ')||'none';return `Current file: ${state.active}. Related/recent files: ${recent}. Imports: ${imports}. Search index: ${files.length} in-memory files. Git diff: browser sandbox placeholder until desktop bridge.`;}
-      function addMsg(role,text,reasoning=false,open=true){const el=document.createElement('div');el.className=`msg ${role} ${reasoning?'reasoning':''}`;el.textContent=text;$('#messages').appendChild(el);$('#messages').scrollTop=$('#messages').scrollHeight;if(open)showAssistant(true)}function showAssistant(show=true){$('#assistantPanel').classList.toggle('collapsed',!show);$('#toggleAssistant').textContent=show?'Hide assistant':'Show assistant'}
-      function requestPayload(prompt,model=state.selectedModel){const body={model,messages:[{role:'system',content:`You are a coding workbench assistant in ${state.mode} mode. Plan mode is read-only. Agent mode requires user approval before writes.`},{role:'user',content:prompt}],stream:false,max_tokens:Number(state.settings.maxTokens)||2048};const m=(state.models||[]).find(x=>x.id===model),p=m?.supported_parameters||[];if(p.includes('temperature'))body.temperature=Number(state.settings.temperature);if(p.includes('top_p'))body.top_p=Number(state.settings.topP);if(p.includes('top_k'))body.top_k=Number(state.settings.topK);if(p.includes('seed'))body.seed=Number(state.settings.seed);if(p.includes('reasoning')&&state.settings.reasoning!=='off')body.reasoning={effort:state.settings.reasoning};return body}
-      async function callOpenRouter(prompt,model=state.selectedModel){if(!sessionKey)throw new Error('OpenRouter key is in memory only and currently empty. Paste a key or switch provider.');const started=performance.now();const r=await fetch('https://openrouter.ai/api/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json',Authorization:`Bearer ${sessionKey}`,'HTTP-Referer':location.href,'X-Title':'Local AI Workbench'},body:JSON.stringify(requestPayload(prompt,model))});if(!r.ok)throw new Error(await r.text());const data=await r.json();recordRun(model,started,data);return data.choices?.[0]?.message?.content||'No content returned.'}
-      async function callOllama(prompt,model=state.selectedModel){const started=performance.now();const r=await fetch(state.ollamaUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(requestPayload(prompt,model))});if(!r.ok)throw new Error(await r.text());const data=await r.json();recordRun(model,started,data);return data.choices?.[0]?.message?.content||JSON.stringify(data,null,2)}
-      function recordRun(model,started,data){const sec=((performance.now()-started)/1000).toFixed(1),usage=data.usage||{},cost=Number(data.usage?.cost||0);state.history.unshift({title:model,meta:`${sec}s · prompt ${usage.prompt_tokens||'?'} · completion ${usage.completion_tokens||'?'} · $${cost.toFixed(5)}`,body:(data.id||'local run')});$('#costMetric').textContent='$'+(state.history.reduce((a,h)=>a+(Number((h.meta.match(/\$(\d+\.\d+)/)||[])[1])||0),0)).toFixed(3);save();}
-      async function send(prompt){try{if(state.mode==='plan')addMsg('ai','PLAN MODE: read-only tools available: inspect files, search project, summarize architecture, propose changes. No writes will be applied.',true);if(state.mode==='agent'&&state.settings.approval&&!confirm('Agent mode may propose file writes/commands. Continue?'))return;const provider=$('#chatProvider').value==='auto'?state.provider:$('#chatProvider').value;const text=provider==='openrouter'?await callOpenRouter(prompt):await callOllama(prompt);addMsg('ai',text)}catch(e){addMsg('ai','Connector error: '+e.message)}}
-      async function loadCatalog(){const [,label,query]=filters.find(f=>f[0]===state.catalogFilter)||filters[0];$('#catalogState').textContent='loading '+label;let url='https://openrouter.ai/api/v1/models';if(query)url+='?'+query;const r=await fetch(url);if(!r.ok)throw new Error(await r.text());const data=await r.json();state.models=data.data||fallbackModels;state.selectedModel=state.models[0]?.id||state.selectedModel;$('#catalogState').textContent=`${state.models.length} live models`;save();render()}
-      function analyzeTask(text){const s=text.toLowerCase(),coding=/code|refactor|bug|html|css|js|component|function/.test(s)?10:4,reason=/why|plan|architecture|reason|research|compare/.test(s)?9:5,context=/project|files|repo|component|import/.test(s)?9:4,speed=/quick|fast|autocomplete|cheap/.test(s)?9:5;$('#autoBars').innerHTML=[['Coding',coding],['Reasoning',reason],['Context',context],['Speed',speed]].map(([n,v])=>`<small>${n}</small><span style="width:${v*10}%"></span>`).join('');const models=state.models||fallbackModels;const rec=models.find(m=>caps(m).includes('Coding')&&caps(m).includes('Long Context'))||models[0];$('#autoAnalysis').textContent=`Recommended: ${rec?.name||rec?.id||'openrouter/auto'} · scores C${coding}/R${reason}/X${context}/S${speed}. Alternative: ${state.fallbackModel}.`;}
-      function proposeDiff(){const old=$('#editor').value,selStart=$('#editor').selectionStart,selEnd=$('#editor').selectionEnd,selected=old.slice(selStart,selEnd)||old.split('\n').slice(0,6).join('\n');const proposed=selected+'\n// AI edit proposal: add validation, error handling, and comments here.';state.pendingDiff={selStart,selEnd:selEnd||selected.length,old:selected,proposed};state.lastFileSnapshot=old;$('#diffBox').innerHTML=`<span class="del">- ${selected.replaceAll('<','&lt;')}</span>\n<span class="add">+ ${proposed.replaceAll('<','&lt;')}</span>`;toast('Diff proposed')}
-      function inlineSuggest(){const v=$('#editor').value;if(!/function\s+\w*$|const\s+\w*$|class\s+\w*$/m.test(v.slice(-80))){$('#autocompleteBox').classList.add('hidden');return}$('#autocompleteBox').textContent='Tab accept: calculateUserPermissions(user, roles) { … }';$('#autocompleteBox').classList.remove('hidden')}
-      $('#connectOpenRouter').onclick=()=>loadCatalog().catch(e=>toast('Catalog error: '+e.message));$('#clearKey').onclick=()=>{sessionKey='';localStorage.removeItem(storeKey+'-key');$('#openRouterKey').value='';toast('API key forgotten')};$('#modelFilters').onclick=e=>{const b=e.target.closest('[data-filter]');if(!b)return;state.catalogFilter=b.dataset.filter;save();render();loadCatalog().catch(()=>{})};$('#modelSearch').oninput=renderModels;$('#modelGrid').onclick=e=>{const b=e.target.closest('[data-model]');if(!b)return;state.selectedModel=b.dataset.model;save();render()};$('#openRouterKey').oninput=e=>{sessionKey=e.target.value;if(state.rememberKey)localStorage.setItem(storeKey+'-key',sessionKey)};$('#rememberKey').onchange=e=>{state.rememberKey=e.target.checked;if(!state.rememberKey)localStorage.removeItem(storeKey+'-key');save();toast(state.rememberKey?'Key will be remembered on this device':'Key is memory-only now')};$('#ollamaUrl').oninput=e=>{state.ollamaUrl=e.target.value;save()};$$('input[name=provider]').forEach(r=>r.onchange=e=>{state.provider=e.target.value;save();render()});$$('[data-mode]').forEach(b=>b.onclick=()=>{state.mode=b.dataset.mode;save();render()});$$('[data-view]').forEach(b=>b.onclick=()=>switchView(b.dataset.view));$('#toggleAssistant').onclick=()=>showAssistant($('#assistantPanel').classList.contains('collapsed'));$('#closeAssistant').onclick=()=>showAssistant(false);$('#assistantFab').onclick=()=>showAssistant(true);$('#sendPrompt').onclick=()=>{const p=$('#prompt').value.trim();if(!p)return;addMsg('user',p);$('#prompt').value='';send(p)};$('#sendMain').onclick=()=>{const p=$('#mainPrompt').value.trim();if(!p)return;addMsg('user',p);send(p)};$('#mainPrompt').oninput=e=>analyzeTask(e.target.value);$('#editor').oninput=e=>{state.files[state.active]=e.target.value;save();render();inlineSuggest()};$('#editor').onkeydown=e=>{if(e.key==='Tab'&&!$('#autocompleteBox').classList.contains('hidden')){e.preventDefault();$('#editor').setRangeText('calculateUserPermissions(user, roles) {\n  return roles.includes("admin");\n}',e.target.selectionStart,e.target.selectionEnd,'end');$('#autocompleteBox').classList.add('hidden')}};$('#fileTree').onclick=e=>{const b=e.target.closest('[data-file]');if(b){state.active=b.dataset.file;save();render()}};$('#aiEditBtn').onclick=proposeDiff;$('#acceptDiff').onclick=()=>{if(!state.pendingDiff)return;const d=state.pendingDiff,txt=$('#editor').value;state.files[state.active]=txt.slice(0,d.selStart)+d.proposed+txt.slice(d.selEnd);state.pendingDiff=null;save();render();toast('Diff accepted')};$('#rejectDiff').onclick=()=>{$('#diffBox').textContent='Diff rejected.';state.pendingDiff=null;save()};$('#undoDiff').onclick=()=>{if(state.lastFileSnapshot){state.files[state.active]=state.lastFileSnapshot;save();render();toast('Undo restored')}};$('#newFile').onclick=()=>{const n=prompt('File path','src/new-module.js');if(n){state.files[n]='// New file\n';state.active=n;save();render();switchView('workspace')}};$('#exportBtn').onclick=()=>{const exported={...state,rememberKey:false};const blob=new Blob([JSON.stringify(exported,null,2)],{type:'application/json'}),a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:'ai-workbench.json'});a.click();URL.revokeObjectURL(a.href);toast('Exported without API key')};$('#importBtn').onclick=()=>$('#importFile').click();$('#importFile').onchange=async e=>{const f=e.target.files[0];if(f){state=JSON.parse(await f.text());save();render();toast('Imported')}};$('#runArena').onclick=async()=>{const prompt=$('#arenaPrompt').value||'Compare approaches for building a local-first HTML game app.';const ids=[$('#arenaA').value,$('#arenaB').value,$('#arenaC').value];$('#arenaState').textContent='running';$('#arenaResults').innerHTML=ids.map(id=>`<div class="arena-card"><strong>${id}</strong><p class="muted">running…</p></div>`).join('');const results=await Promise.all(ids.map(async id=>{const t=performance.now();try{return{id,text:state.provider==='openrouter'?await callOpenRouter(prompt,id):await callOllama(prompt,id),sec:((performance.now()-t)/1000).toFixed(1)}}catch(e){return{id,text:'Error: '+e.message,sec:'0'}}}));$('#arenaResults').innerHTML=results.map(r=>`<div class="arena-card"><strong>${r.id}</strong><p>${r.text}</p><p class="muted">${r.sec}s · measured client-side</p></div>`).join('');$('#arenaState').textContent='complete';save()};$('#judgeArena').onclick=()=>addMsg('ai','Judge criteria: correctness, reasoning, code quality, completeness, hallucination risk, and instruction following. Select a judge model and rerun Arena for a real model verdict.',true);$('#makeResearch').onclick=()=>{const t=$('#researchPrompt').value||'Untitled research';state.research.unshift({title:t.slice(0,70),body:`Assumptions, evidence needed, risks, and next experiment for: ${t}`});$('#researchPrompt').value='';save();render()};['primaryModel','fallbackModel','autocompleteModel'].forEach(id=>$('#'+id).onchange=e=>{if(id==='primaryModel')state.selectedModel=e.target.value;if(id==='fallbackModel')state.fallbackModel=e.target.value;if(id==='autocompleteModel')state.autocompleteModel=e.target.value;save();render()});['temperature','topP','topK','maxTokens','contextSize','seedValue'].forEach(id=>$('#'+id).oninput=e=>{const key=id==='seedValue'?'seed':id;state.settings[key]=Number(e.target.value);save()});['reasoningLevel','routingPref','fallbackBehavior','retention'].forEach(id=>$('#'+id).onchange=e=>{const map={reasoningLevel:'reasoning',routingPref:'routing',fallbackBehavior:'fallback',retention:'retention'};state.settings[map[id]]=e.target.value;save()});['agentApproval','allowWrites','allowCommands','autoTest','compactMode','animations'].forEach(id=>$('#'+id).onchange=e=>{const map={agentApproval:'approval',allowWrites:'writes',allowCommands:'commands',autoTest:'autoTest',compactMode:'compact',animations:'animations'};state.settings[map[id]]=e.target.checked;save();render()});$$('.quick').forEach(b=>b.onclick=()=>{toast(b.dataset.quick);if(b.dataset.quick==='Import file')$('#importFile').click();if(b.dataset.quick==='Compare models')switchView('arena');if(b.dataset.quick==='Open agent'){state.mode='agent';render();showAssistant(true)}});$('#plusBtn').onclick=$('#mobilePlus').onclick=()=>toast('Actions: New chat · New project · Compare · Benchmark · Generate HTML · Open agent · Import');$('#startBtn').onclick=()=>{$('#welcome').remove();localStorage.setItem(storeKey+'-welcomed','1')};if(localStorage.getItem(storeKey+'-welcomed'))$('#welcome').remove();addMsg('ai','Workbench V1.2 ready. API key is memory-only unless you opt into remembering it. Load the live OpenRouter catalog to discover current models automatically.',false,false);render();
+      /* =====================================================================
+         ForgePilot Local v2.0 — Continue.dev parity, iOS-first
+         ===================================================================== */
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => [...document.querySelectorAll(s)];
+      const esc = (v) =>
+        String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      const storeKey = "forgepilot-local-v2";
+      const legacyKey = "local-ai-workbench-v1.2";
+      let sessionKey = "";
+      let abortCtl = null;
+      let agentRunning = false;
+
+      /* ---------- model data ---------- */
+      const fallbackModels = [
+        { id: "openrouter/auto", name: "OpenRouter Auto", context_length: 200000, pricing: { prompt: "0", completion: "0" }, supported_parameters: ["temperature", "top_p", "max_tokens", "tools"], input_modalities: ["text"], description: "Dynamic OpenRouter router — picks the best model per request." },
+        { id: "openrouter/free", name: "OpenRouter Free", context_length: 128000, pricing: { prompt: "0", completion: "0" }, supported_parameters: ["temperature", "tools"], input_modalities: ["text"], description: "Routes to available free models." },
+        { id: "local/ollama", name: "Local model (Ollama)", context_length: 128000, pricing: { prompt: "0", completion: "0" }, supported_parameters: ["temperature", "top_p", "top_k", "seed", "max_tokens"], input_modalities: ["text"], description: "Whatever model your local runtime serves at the configured endpoint." },
+      ];
+      const filters = [
+        ["newest", "Newest", "sort=newest"],
+        ["overall", "Best Overall", "sort=intelligence-high-to-low"],
+        ["coding", "Best Coding", "sort=coding-high-to-low"],
+        ["reasoning", "Reasoning", "supported_parameters=reasoning"],
+        ["fastest", "Fastest", "sort=latency-low-to-high"],
+        ["cheapest", "Cheapest", "sort=pricing-low-to-high"],
+        ["context", "Largest Context", "sort=context-high-to-low"],
+        ["multimodal", "Multimodal", "input_modalities=text,image"],
+        ["tools", "Tool Calling", "supported_parameters=tools"],
+        ["free", "Free", "max_price=0"],
+      ];
+
+      /* ---------- state ---------- */
+      const seedFiles = {
+        "src/app.js":
+          'function hello(name) {\n  return `Welcome, ${name}!`;\n}\n\nconsole.log(hello("builder"));\n',
+        "index.html":
+          '<!doctype html>\n<html>\n  <head><meta name="viewport" content="width=device-width, initial-scale=1" /></head>\n  <body>\n    <main id="app">Hello ForgePilot</main>\n  </body>\n</html>\n',
+        "README.md": "# ForgePilot Local\n\nA browser-first, iOS-ready Continue.dev workbench.\n",
+      };
+      const seed = {
+        active: "src/app.js",
+        mode: "chat",
+        provider: "ollama",
+        selectedModel: "openrouter/auto",
+        fallbackModel: "openrouter/free",
+        autocompleteModel: "openrouter/free",
+        judgeModel: "openrouter/auto",
+        models: fallbackModels,
+        catalogFilter: "newest",
+        history: [],
+        research: [],
+        docs: [],
+        rules: ["Prefer concise, production-ready code with brief explanations."],
+        agents: [
+          { name: "Default", prompt: "", model: "openrouter/auto" },
+          { name: "iOS Swift Mentor", prompt: "You are an expert iOS/SwiftUI mentor. Answer with idiomatic Swift code and short explanations.", model: "openrouter/auto" },
+        ],
+        activeAgent: "Default",
+        rememberKey: false,
+        ollamaUrl: "http://127.0.0.1:11434/v1/chat/completions",
+        settings: {
+          temperature: 0.4, topP: 0.9, topK: 40, maxTokens: 2048, contextSize: 128000, seed: 0,
+          reasoning: "medium", routing: "quality", fallback: "ask", approval: true, writes: false,
+          autoTest: false, compact: false, animations: true, retention: "30 days",
+          stream: true, haptics: true, syntax: false, theme: "dark",
+        },
+        files: { ...seedFiles },
+        pinned: [],
+        pendingDiff: null,
+        undoStack: {},
+        convo: [],
+        ctx: [],
+      };
+      const mergeState = (base, over) => {
+        const out = { ...base, ...(over || {}) };
+        out.settings = { ...base.settings, ...((over || {}).settings || {}) };
+        out.files = { ...base.files, ...((over || {}).files || {}) };
+        for (const k of ["history", "research", "docs", "rules", "agents", "pinned", "convo", "ctx"])
+          if (!Array.isArray(out[k])) out[k] = base[k].slice();
+        if (!out.files[out.active]) out.active = Object.keys(out.files)[0] || "src/app.js";
+        return out;
+      };
+      let state = mergeState(
+        seed,
+        JSON.parse(localStorage.getItem(storeKey) || localStorage.getItem(legacyKey) || "null") || {}
+      );
+      if (state.rememberKey) sessionKey = localStorage.getItem(storeKey + "-key") || localStorage.getItem(legacyKey + "-key") || "";
+
+      const save = () => {
+        const copy = { ...state, pendingDiff: null };
+        try { localStorage.setItem(storeKey, JSON.stringify(copy)); } catch (_) {}
+        if (state.rememberKey && sessionKey) localStorage.setItem(storeKey + "-key", sessionKey);
+      };
+      const toast = (m) => {
+        const t = $("#toast");
+        t.textContent = m;
+        t.classList.add("show");
+        clearTimeout(t._h);
+        t._h = setTimeout(() => t.classList.remove("show"), 2200);
+      };
+      /* ---------- haptics ---------- */
+      const buzz = (ms = 10) => {
+        if (state?.settings?.haptics && navigator.vibrate) { try { navigator.vibrate(ms); } catch (_) {} }
+      };
+      const money = (v) => {
+        const n = Number(v || 0);
+        return n ? `$${(n * 1e6).toFixed(2)}/M` : "free/varies";
+      };
+      const caps = (m) => {
+        const p = m.supported_parameters || [];
+        const mods = m.input_modalities || m.architecture?.input_modalities || [];
+        return [
+          p.includes("reasoning") && "Reasoning",
+          p.includes("tools") && "Tools",
+          p.includes("response_format") && "Structured",
+          mods.includes("image") && "Vision",
+          (m.context_length || 0) >= 1e6 && "1M Context",
+          (m.context_length || 0) >= 128000 && "Long Context",
+          /code|coder|dev|program|agent|swift/i.test(`${m.name} ${m.id} ${m.description || ""}`) && "Coding",
+        ].filter(Boolean);
+      };
+
+      /* ---------- markdown-lite renderer (safe) ---------- */
+      const renderMd = (text) => {
+        const parts = String(text).split(/```/);
+        return parts
+          .map((chunk, i) => {
+            if (i % 2 === 1) {
+              const nl = chunk.indexOf("\n");
+              const code = nl === -1 ? chunk : chunk.slice(nl + 1);
+              return `<pre><code>${esc(code)}</code></pre>`;
+            }
+            return esc(chunk)
+              .replace(/`([^`\n]+)`/g, "<code>$1</code>")
+              .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
+          })
+          .join("");
+      };
+
+      /* ---------- context pack (fixed null-crash from v1) ---------- */
+      function contextPack() {
+        const files = Object.keys(state.files);
+        const recent = files.slice(-4).join(", ") || "none";
+        const cur = state.files[state.active] || "";
+        const imports = (cur.match(/(?:import|from|require\()[^\n]+/g) || []).slice(0, 4).join(" | ") || "none";
+        return `Current file: ${state.active}. Files: ${files.length}. Recent: ${recent}. Imports: ${imports}. Pinned: ${state.pinned.join(", ") || "none"}. Rules: ${state.rules.length}. Docs: ${state.docs.length}.`;
+      }
+
+      /* ---------- messages ---------- */
+      function scrollMsgs() {
+        const m = $("#messages");
+        m.scrollTop = m.scrollHeight;
+      }
+      function addMsg(role, text, opts = {}) {
+        const el = document.createElement("div");
+        el.className = `msg ${role}${opts.reasoning ? " reasoning" : ""}`;
+        el.innerHTML = renderMd(text);
+        if (opts.ctx && opts.ctx.length) {
+          const c = document.createElement("div");
+          c.className = "msg-ctx";
+          c.innerHTML = opts.ctx.map((x) => `<span class="badge">@${esc(x)}</span>`).join("");
+          el.prepend(c);
+        }
+        $("#messages").appendChild(el);
+        if (opts.ephemeral !== true) {
+          state.convo.push({ role: role === "user" ? "user" : "assistant", content: String(text).replace(/<[^>]+>/g, "") });
+          if (state.convo.length > 60) state.convo = state.convo.slice(-60);
+          save();
+        }
+        scrollMsgs();
+        if (opts.open !== false) showAssistant(true);
+        return el;
+      }
+      function addThinking() {
+        const el = document.createElement("div");
+        el.className = "msg ai";
+        el.innerHTML = `<span class="thinking"><i></i><i></i><i></i></span>`;
+        $("#messages").appendChild(el);
+        scrollMsgs();
+        showAssistant(true);
+        return el;
+      }
+      function showAssistant(show = true) {
+        $("#assistantPanel").classList.toggle("collapsed", !show);
+        $("#toggleAssistant").textContent = show ? "Hide assistant" : "Show assistant";
+      }
+
+      /* ---------- system prompt: modes + agents + rules (Continue parity) ---------- */
+      function systemPrompt() {
+        const agent = state.agents.find((a) => a.name === state.activeAgent) || state.agents[0];
+        const modeLine = {
+          chat: "You are in Chat mode: answer questions and discuss code. Do not modify files.",
+          plan: "You are in Plan mode: READ-ONLY. Inspect, search and propose a step-by-step implementation plan. Never output code edits.",
+          edit: "You are in Edit mode: output the FULL rewritten file content only, wrapped in a single ``` code block. No prose before or after.",
+          agent: "You are in Agent mode: use the provided tools to read, write, search and manage the project. Prefer small, verified steps. Ask before destructive actions.",
+        }[state.mode];
+        const rules = state.rules.length ? `\nProject rules:\n${state.rules.map((r, i) => `${i + 1}. ${r}`).join("\n")}` : "";
+        const docs = state.docs.length ? `\nAvailable @Docs indexes: ${state.docs.map((d) => d.url).join(", ")}` : "";
+        return `${agent?.prompt ? agent.prompt + "\n" : ""}You are ForgePilot, a Continue.dev-style coding workbench assistant. ${modeLine}\n${contextPack()}${rules}${docs}`;
+      }
+
+      /* ---------- request building (catalog-aware: fixes v1 POST-body bug) ---------- */
+      function requestPayload(messages, model = state.selectedModel, opts = {}) {
+        const body = {
+          model,
+          messages,
+          stream: !!opts.stream,
+          max_tokens: Number(state.settings.maxTokens) || 2048,
+        };
+        const m = (state.models || []).find((x) => x.id === model);
+        const known = m ? new Set(m.supported_parameters || []) : null;
+        const allow = (p) => !known || known.has(p) || ["temperature", "top_p", "max_tokens"].includes(p);
+        if (allow("temperature")) body.temperature = Number(state.settings.temperature);
+        if (allow("top_p")) body.top_p = Number(state.settings.topP);
+        if (allow("top_k")) body.top_k = Number(state.settings.topK);
+        if (allow("seed") && Number(state.settings.seed)) body.seed = Number(state.settings.seed);
+        if (allow("reasoning") && state.settings.reasoning !== "off") body.reasoning = { effort: state.settings.reasoning };
+        if (opts.tools) { body.tools = opts.tools; body.tool_choice = "auto"; }
+        return body;
+      }
+      function providerInfo(override) {
+        const p = override && override !== "auto" ? override : state.provider;
+        if (p === "openrouter") {
+          if (!sessionKey) throw new Error("OpenRouter key is empty. Paste it in Models view or switch to Ollama.");
+          return {
+            url: "https://openrouter.ai/api/v1/chat/completions",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + sessionKey,
+              "HTTP-Referer": location.href,
+              "X-Title": "ForgePilot Local",
+            },
+          };
+        }
+        return { url: state.ollamaUrl, headers: { "Content-Type": "application/json" } };
+      }
+      function setBusy(b) {
+        $("#statusDot").classList.toggle("busy", b);
+        $("#readyState").textContent = b ? "working…" : "ready";
+        $("#stopBtn").classList.toggle("hidden", !b);
+        $("#sendPrompt").classList.toggle("hidden", b);
+      }
+
+      /* ---------- streaming / non-streaming call ---------- */
+      async function callLLM(messages, { model, provider, tools, onToken, skipRecord } = {}) {
+        const useStream = state.settings.stream && !tools;
+        const info = providerInfo(provider);
+        const started = performance.now();
+        const body = requestPayload(messages, model || state.selectedModel, { stream: useStream, tools });
+        abortCtl = new AbortController();
+        const r = await fetch(info.url, { method: "POST", headers: info.headers, body: JSON.stringify(body), signal: abortCtl.signal });
+        if (!r.ok) {
+          const errText = await r.text();
+          throw new Error((errText || "HTTP " + r.status).slice(0, 400));
+        }
+        let text = "";
+        let usage = null;
+        let toolCalls = null;
+        if (useStream && r.body) {
+          const reader = r.body.getReader();
+          const dec = new TextDecoder();
+          let buf = "";
+          for (;;) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            buf += dec.decode(value, { stream: true });
+            const lines = buf.split("\n");
+            buf = lines.pop() || "";
+            for (const line of lines) {
+              const s = line.trim();
+              if (!s.startsWith("data:")) continue;
+              const payload = s.slice(5).trim();
+              if (payload === "[DONE]") continue;
+              try {
+                const j = JSON.parse(payload);
+                const delta = j.choices?.[0]?.delta?.content ?? j.choices?.[0]?.message?.content ?? "";
+                if (delta) { text += delta; onToken && onToken(text); }
+                if (j.usage) usage = j.usage;
+              } catch (_) {}
+            }
+          }
+        } else {
+          const data = await r.json();
+          const msg = data.choices?.[0]?.message;
+          text = msg?.content ?? "";
+          toolCalls = msg?.tool_calls || null;
+          usage = data.usage || null;
+          if (data.usage?.cost != null) usage = { ...usage, cost: data.usage.cost };
+        }
+        if (!skipRecord) recordRun(model || state.selectedModel, started, usage);
+        return { text, toolCalls };
+      }
+
+      function recordRun(model, started, usage) {
+        const sec = ((performance.now() - started) / 1000).toFixed(1);
+        const cost = Number(usage?.cost || 0);
+        state.history.unshift({
+          title: model,
+          meta: `${sec}s · in ${usage?.prompt_tokens ?? "?"} · out ${usage?.completion_tokens ?? "?"} · \$${cost.toFixed(5)}`,
+          body: new Date().toLocaleString(),
+          cost,
+        });
+        if (state.history.length > 100) state.history.length = 100;
+        const total = state.history.reduce((a, h) => a + (h.cost || 0), 0);
+        $("#costMetric").textContent = "$" + total.toFixed(3);
+        $("#historyState").textContent = `${state.history.length} runs`;
+        save();
+      }
+
+      /* ---------- agent tools (Continue built-in tools parity) ---------- */
+      const agentTools = [
+        { type: "function", function: { name: "read_file", description: "Read the full contents of a project file.", parameters: { type: "object", properties: { path: { type: "string" } }, required: ["path"] } } },
+        { type: "function", function: { name: "write_file", description: "Create or overwrite a project file with new content.", parameters: { type: "object", properties: { path: { type: "string" }, content: { type: "string" } }, required: ["path", "content"] } } },
+        { type: "function", function: { name: "list_files", description: "List all files in the project.", parameters: { type: "object", properties: {} } } },
+        { type: "function", function: { name: "search_files", description: "Case-insensitive substring search across all project files. Returns matching path:line entries.", parameters: { type: "object", properties: { query: { type: "string" } }, required: ["query"] } } },
+        { type: "function", function: { name: "delete_file", description: "Delete a project file.", parameters: { type: "object", properties: { path: { type: "string" } }, required: ["path"] } } },
+      ];
+      function runTool(name, args) {
+        switch (name) {
+          case "read_file":
+            return state.files[args.path] != null ? state.files[args.path].slice(0, 20000) : `Error: no such file '${args.path}'`;
+          case "write_file": {
+            if (!state.settings.writes) return "Error: file writes are disabled. Enable 'Allow file writes in Agent' in Settings.";
+            pushUndo(args.path);
+            state.files[args.path] = args.content;
+            state.active = args.path;
+            save(); render();
+            return `Wrote ${args.path} (${args.content.length} chars).`;
+          }
+          case "list_files":
+            return Object.keys(state.files).join("\n");
+          case "search_files": {
+            const q = String(args.query || "").toLowerCase();
+            const hits = [];
+            for (const [p, c] of Object.entries(state.files))
+              c.split("\n").forEach((line, i) => {
+                if (line.toLowerCase().includes(q)) hits.push(`${p}:${i + 1}: ${line.trim().slice(0, 140)}`);
+              });
+            return hits.slice(0, 30).join("\n") || "No matches.";
+          }
+          case "delete_file": {
+            if (!state.settings.writes) return "Error: file writes are disabled in Settings.";
+            if (state.files[args.path] == null) return `Error: no such file '${args.path}'`;
+            pushUndo(args.path);
+            delete state.files[args.path];
+            if (!state.files[state.active]) state.active = Object.keys(state.files)[0] || "";
+            save(); render();
+            return `Deleted ${args.path}.`;
+          }
+          default:
+            return `Error: unknown tool '${name}'`;
+        }
+      }
+      async function agentLoop(userText, provider) {
+        if (agentRunning) { toast("Agent already running"); return; }
+        if (!state.settings.writes)
+          addMsg("ai", "ℹ️ Agent note: file writes are currently disabled (Settings → 'Allow file writes in Agent'). I can read and search, but writes will be refused.", { reasoning: true, ephemeral: true });
+        agentRunning = true;
+        setBusy(true);
+        const thinkEl = addThinking();
+        const messages = [
+          { role: "system", content: systemPrompt() },
+          ...state.convo.slice(-12),
+        ];
+        try {
+          for (let step = 0; step < 8; step++) {
+            const { text, toolCalls } = await callLLM(messages, { provider, tools: agentTools });
+            if (toolCalls && toolCalls.length) {
+              messages.push({ role: "assistant", content: text || "", tool_calls: toolCalls });
+              for (const tc of toolCalls) {
+                const fn = tc.function?.name || "";
+                let args = {};
+                try { args = JSON.parse(tc.function?.arguments || "{}"); } catch (_) {}
+                const summary = `${fn}(${Object.entries(args).map(([k, v]) => `${k}=${String(v).slice(0, 60)}`).join(", ")})`;
+                if (state.settings.approval && !window.confirm(`Agent wants to run:\n\n${summary}\n\nAllow?`)) {
+                  messages.push({ role: "tool", tool_call_id: tc.id, content: "Denied by user." });
+                  addMsg("ai", `🚫 Tool denied: ${fn}`, { reasoning: true, ephemeral: true });
+                  continue;
+                }
+                addMsg("ai", `🔧 ${summary}`, { reasoning: true, ephemeral: true });
+                buzz(15);
+                const out = runTool(fn, args);
+                messages.push({ role: "tool", tool_call_id: tc.id, content: String(out).slice(0, 12000) });
+              }
+              continue;
+            }
+            if (text) addMsg("ai", text);
+            break;
+          }
+        } catch (e) {
+          addMsg("ai", "⚠️ Agent error: " + e.message);
+        } finally {
+          thinkEl.remove();
+          agentRunning = false;
+          setBusy(false);
+        }
+      }
+
+      /* ---------- send pipeline ---------- */
+      function extractContext(text) {
+        const chips = [];
+        const fileNames = Object.keys(state.files);
+        const clean = text.replace(/@([\w./-]+)/g, (m, name) => {
+          const hit = fileNames.find((f) => f === name || f.endsWith("/" + name) || f.split("/").pop() === name);
+          if (hit) { chips.push(hit); return m; }
+          const doc = state.docs.find((d) => d.url.includes(name));
+          if (doc) { chips.push("docs:" + doc.url); return m; }
+          if (name === "code") { chips.push(state.active); return m; }
+          return m;
+        });
+        return { clean, chips };
+      }
+      function buildUserMessage(text, chips) {
+        let extra = "";
+        for (const c of chips) {
+          if (c.startsWith("docs:")) {
+            const d = state.docs.find((x) => "docs:" + x.url === c);
+            if (d?.content) extra += `\n\n[Docs: ${d.url}]\n${d.content.slice(0, 6000)}`;
+          } else if (state.files[c] != null) {
+            extra += `\n\n[File: ${c}]\n\`\`\`\n${state.files[c].slice(0, 12000)}\n\`\`\``;
+          }
+        }
+        if (state.mode !== "chat" && state.files[state.active] != null && !chips.includes(state.active))
+          extra += `\n\n[Current file: ${state.active}]\n\`\`\`\n${state.files[state.active].slice(0, 12000)}\n\`\`\``;
+        return text + extra;
+      }
+      async function send(rawText) {
+        const { clean, chips } = extractContext(rawText);
+        if (state.mode === "plan")
+          addMsg("ai", "🗺️ PLAN MODE — read-only. I will inspect and propose, not modify.", { reasoning: true, open: false, ephemeral: true });
+        if (state.mode === "agent") return agentLoop(clean, $("#chatProvider").value);
+        if (state.mode === "edit") return runAiEdit(clean);
+        const messages = [
+          { role: "system", content: systemPrompt() },
+          ...state.convo.slice(-12),
+          { role: "user", content: buildUserMessage(clean, chips) },
+        ];
+        setBusy(true);
+        const thinkEl = addThinking();
+        try {
+          const { text } = await callLLM(messages, {
+            provider: $("#chatProvider").value,
+            onToken: (t) => { thinkEl.innerHTML = renderMd(t); scrollMsgs(); },
+          });
+          thinkEl.remove();
+          addMsg("ai", text || "(empty response)");
+          buzz(12);
+        } catch (e) {
+          thinkEl.remove();
+          if (e.name === "AbortError") { addMsg("ai", "⏹ Stopped.", { reasoning: true, ephemeral: true }); }
+          else if (state.settings.fallback === "auto-fallback" && state.fallbackModel) {
+            addMsg("ai", `⚠️ ${e.message} — retrying with fallback model…`, { reasoning: true, ephemeral: true });
+            const t2 = addThinking();
+            try {
+              const { text } = await callLLM(messages, { model: state.fallbackModel, provider: $("#chatProvider").value });
+              t2.remove();
+              addMsg("ai", text || "(empty response)");
+            } catch (e2) { t2.remove(); addMsg("ai", "⚠️ Fallback also failed: " + e2.message); }
+          } else {
+            addMsg("ai", "⚠️ Connector error: " + e.message);
+          }
+        } finally {
+          setBusy(false);
+        }
+      }
+
+      /* ---------- Continue-style inline Edit (real LLM diff) ---------- */
+      function pushUndo(path) {
+        if (state.undoStack[path] === undefined) state.undoStack[path] = state.files[path] ?? null;
+      }
+      async function runAiEdit(instruction) {
+        const file = state.active;
+        const old = state.files[file] ?? "";
+        const instr = instruction || "Improve this code: fix bugs, add validation and clarity.";
+        if (!old.trim()) { toast("Current file is empty — nothing to edit"); return; }
+        setBusy(true);
+        addMsg("user", `✏️ Edit ${file}: ${instr}`);
+        const thinkEl = addThinking();
+        const messages = [
+          { role: "system", content: systemPrompt() },
+          { role: "user", content: `${instr}\n\nFile: ${file}\n\`\`\`\n${old}\n\`\`\`` },
+        ];
+        try {
+          const { text } = await callLLM(messages, {
+            provider: $("#chatProvider").value,
+            onToken: (t) => { thinkEl.innerHTML = renderMd(t); scrollMsgs(); },
+          });
+          thinkEl.remove();
+          const m = text.match(/```[\w-]*\n([\s\S]*?)```/);
+          const proposed = (m ? m[1] : text).replace(/\n$/, "");
+          if (!proposed.trim()) throw new Error("Model returned an empty edit.");
+          state.pendingDiff = { file, old, proposed };
+          const oldLines = old.split("\n").slice(0, 40).map((l) => `<span class="del">- ${esc(l)}</span>`).join("\n");
+          const newLines = proposed.split("\n").slice(0, 40).map((l) => `<span class="add">+ ${esc(l)}</span>`).join("\n");
+          $("#diffBox").innerHTML = `${oldLines}\n${newLines}`;
+          addMsg("ai", `📋 Proposed a rewrite of ${file} (${old.length} → ${proposed.length} chars). Review the diff in Workspace, then Accept or Reject.`);
+          switchView("workspace");
+          toast("Diff proposed");
+        } catch (e) {
+          thinkEl.remove();
+          addMsg("ai", "⚠️ Edit failed: " + e.message);
+        } finally {
+          setBusy(false);
+        }
+      }
+
+      /* ---------- autocomplete (Continue autocomplete parity, real) ---------- */
+      let acTimer = null;
+      let acSuggestion = "";
+      function scheduleAutocomplete() {
+        clearTimeout(acTimer);
+        acTimer = setTimeout(maybeAutocomplete, 900);
+      }
+      async function maybeAutocomplete() {
+        const ed = $("#editor");
+        if (document.activeElement !== ed) return;
+        const pos = ed.selectionStart;
+        const before = ed.value.slice(Math.max(0, pos - 800), pos);
+        const after = ed.value.slice(pos, pos + 300);
+        if (!before.trim() || before.trim().split("\n").length < 2) return;
+        const lastLine = (before.split("\n").pop() || "");
+        if (!/[({[=:,.]\s*$/.test(before) && !/^\s*(function|const|let|var|class|return|import|if|for|while|async)\b[^;{}]*$/.test(lastLine)) return;
+        try {
+          const { text } = await callLLM(
+            [
+              { role: "system", content: "You are a code autocomplete engine (like Continue autocomplete). Given code before and after the cursor, output ONLY the next few tokens/lines to insert at the cursor. No markdown fences, no explanation. Max 8 lines." },
+              { role: "user", content: `BEFORE CURSOR:\n${before}\n<|cursor|>\nAFTER CURSOR:\n${after}` },
+            ],
+            { model: state.autocompleteModel, provider: state.provider, skipRecord: true }
+          );
+          const sug = text.replace(/```[\w-]*\n?/g, "").replace(/```/g, "").trimEnd();
+          if (!sug || sug.length > 600) return;
+          acSuggestion = sug;
+          const box = $("#autocompleteBox");
+          box.innerHTML = `<span class="hint">Tab to accept · Esc to dismiss</span>\n${esc(sug)}`;
+          box.classList.remove("hidden");
+        } catch (_) {}
+      }
+      function hideAutocomplete() {
+        acSuggestion = "";
+        $("#autocompleteBox").classList.add("hidden");
+      }
+
+      /* ---------- syntax highlight overlay ---------- */
+      function highlight(code) {
+        const tok = [];
+        let html = esc(code);
+        // order: comments, strings, keywords, numbers, calls, tags
+        html = html
+          .replace(/(\/\*[\s\S]*?\*\/|\/\/[^\n]*|&lt;!--[\s\S]*?--&gt;)/g, (m) => { tok.push(`<span class="tok-c">${m}</span>`); return `${tok.length - 1}`; })
+          .replace(/(&quot;[^\n]*?&quot;|&#39;[^\n]*?&#39;|`[^`\n]*`)/g, (m) => { tok.push(`<span class="tok-s">${m}</span>`); return `${tok.length - 1}`; })
+          .replace(/\b(function|return|const|let|var|class|extends|import|from|export|default|if|else|for|while|do|switch|case|break|continue|new|try|catch|finally|throw|async|await|yield|typeof|instanceof|in|of|null|undefined|true|false|this|super|static|get|set|delete|void)\b/g, '<span class="tok-k">$1</span>')
+          .replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="tok-n">$1</span>')
+          .replace(/([A-Za-z_$][\w$]*)(?=\s*\()/g, '<span class="tok-a">$1</span>')
+          .replace(/(&lt;\/?[a-zA-Z][^&\s]*|\/?&gt;)/g, '<span class="tok-t">$1</span>')
+          .replace(/(\d+)/g, (m) => tok[+m]);
+        return html + "\n";
+      }
+      function syncHighlight() {
+        const on = state.settings.syntax;
+        const hl = $("#editorHl");
+        const ed = $("#editor");
+        hl.classList.toggle("hidden", !on);
+        ed.classList.toggle("transparent", on);
+        if (on) {
+          hl.innerHTML = highlight(ed.value);
+          hl.scrollTop = ed.scrollTop;
+          hl.scrollLeft = ed.scrollLeft;
+        }
+      }
+
+      /* ---------- rendering ---------- */
+      function render() {
+        const models = state.models?.length ? state.models : fallbackModels;
+        $("#fileCount").textContent = Object.keys(state.files).length;
+        $("#modelCount").textContent = models.length;
+        $("#modeMetric").textContent = state.mode[0].toUpperCase() + state.mode.slice(1);
+        $("#miniProvider").textContent = state.provider === "openrouter" ? "OpenRouter cloud" : "Ollama/local";
+        $("#miniModel").textContent = state.selectedModel;
+        $("#miniMode").textContent = state.mode[0].toUpperCase() + state.mode.slice(1);
+        $("#openRouterKey").value = sessionKey;
+        $("#rememberKey").checked = !!state.rememberKey;
+        $("#ollamaUrl").value = state.ollamaUrl;
+        $("#modelFilters").innerHTML = filters
+          .map(([id, label]) => `<button class="chip ${state.catalogFilter === id ? "active" : ""}" data-filter="${id}">${label}</button>`)
+          .join("");
+        renderModels();
+        renderSelects();
+        $("#activePath").textContent = state.active;
+        if ($("#editor").value !== (state.files[state.active] || "")) $("#editor").value = state.files[state.active] || "";
+        syncHighlight();
+        $("#fileTree").innerHTML =
+          Object.keys(state.files)
+            .sort((a, b) => (state.pinned.includes(b) ? 1 : 0) - (state.pinned.includes(a) ? 1 : 0) || a.localeCompare(b))
+            .map(
+              (p) => `<button class="file ${p === state.active ? "active" : ""}" data-file="${esc(p)}">
+                <span class="fname">${state.pinned.includes(p) ? "📌 " : ""}${esc(p)}</span>
+                <span class="fmeta"><span class="muted">${state.files[p].split("\n").length}l</span>
+                <span class="icon-btn" data-pin="${esc(p)}" title="Pin">${state.pinned.includes(p) ? "📌" : "📍"}</span>
+                <span class="icon-btn danger" data-del="${esc(p)}" title="Delete">✕</span></span>
+              </button>`
+            )
+            .join("") || '<p class="muted">No files yet.</p>';
+        $("#contextPack").textContent = contextPack();
+        $("#historyList").innerHTML =
+          state.history
+            .map((h) => `<div class="cardlet"><strong>${esc(h.title)}</strong><p class="muted">${esc(h.meta)}</p><p class="muted">${esc(h.body)}</p></div>`)
+            .join("") || '<p class="muted">No runs yet.</p>';
+        $("#historyState").textContent = `${state.history.length} runs`;
+        $("#researchCards").innerHTML =
+          state.research.map((r) => `<div class="cardlet reasoning"><strong>${esc(r.title)}</strong><p>${renderMd(r.body)}</p></div>`).join("") ||
+          '<p class="muted">No reasoning blocks yet.</p>';
+        $("#docsList").innerHTML =
+          state.docs
+            .map(
+              (d, i) => `<div class="cardlet"><strong>${esc(d.url)}</strong><p class="muted">${d.content ? d.content.length + " chars indexed" : "reference only (CORS)"} · ${esc(d.when)}</p>
+                <button class="ghost" data-rm-doc="${i}">Remove</button></div>`
+            )
+            .join("") || '<p class="muted">No docs indexed yet.</p>';
+        $("#docsState").textContent = `${state.docs.length} indexed`;
+        $("#rulesList").innerHTML =
+          state.rules.map((r, i) => `<div class="cardlet"><p style="margin:0 0 6px">${esc(r)}</p><button class="ghost" data-rm-rule="${i}">Remove</button></div>`).join("") ||
+          '<p class="muted">No rules yet.</p>';
+        $("#agentsList").innerHTML =
+          state.agents
+            .map(
+              (a, i) => `<div class="cardlet ${a.name === state.activeAgent ? "reasoning" : ""}">
+                <strong>${a.name === state.activeAgent ? "✅ " : ""}${esc(a.name)}</strong>
+                <p class="muted">${esc(a.model)} · ${esc((a.prompt || "default assistant").slice(0, 90))}</p>
+                <div class="row"><button class="secondary" data-use-agent="${i}">Use</button>
+                ${i > 0 ? `<button class="ghost danger" data-rm-agent="${i}">Delete</button>` : ""}</div></div>`
+            )
+            .join("");
+        $("#agentsState").textContent = `${state.agents.length} agents · active: ${state.activeAgent}`;
+        $("#assistantSub").textContent = `${state.activeAgent} · ${state.mode} · ${state.provider}`;
+        $$("[data-mode]").forEach((b) => b.classList.toggle("active", b.dataset.mode === state.mode));
+        $$("input[name=provider]").forEach((r) => {
+          r.checked = r.value === state.provider;
+          r.closest(".chip")?.classList.toggle("active", r.checked);
+        });
+        const s = state.settings;
+        $("#temperature").value = s.temperature; $("#topP").value = s.topP; $("#topK").value = s.topK;
+        $("#maxTokens").value = s.maxTokens; $("#contextSize").value = s.contextSize; $("#seedValue").value = s.seed;
+        $("#reasoningLevel").value = s.reasoning; $("#routingPref").value = s.routing;
+        $("#fallbackBehavior").value = s.fallback; $("#retention").value = s.retention; $("#themePref").value = s.theme;
+        $("#streamResponses").checked = s.stream; $("#agentApproval").checked = s.approval;
+        $("#allowWrites").checked = s.writes; $("#hapticsToggle").checked = s.haptics;
+        $("#syntaxHl").checked = s.syntax; $("#autoTest").checked = s.autoTest;
+        $("#compactMode").checked = s.compact; $("#animations").checked = s.animations;
+        document.body.style.fontSize = s.compact ? "14px" : "";
+        document.body.dataset.theme = s.theme;
+        document.body.classList.toggle("no-anim", !s.animations);
+        renderCtxChips();
+        analyzeTask($("#mainPrompt")?.value || "");
+      }
+      function renderModels() {
+        const q = ($("#modelSearch")?.value || "").toLowerCase();
+        const models = (state.models || fallbackModels).filter((m) =>
+          `${m.id} ${m.name || ""} ${m.description || ""}`.toLowerCase().includes(q)
+        );
+        $("#modelGrid").innerHTML =
+          models
+            .slice(0, 80)
+            .map(
+              (m) => `<button class="model-card ${m.id === state.selectedModel ? "selected" : ""}" data-model="${esc(m.id)}">
+                <strong>${esc(m.name || m.id)}</strong><span class="muted">${esc(m.id)}</span>
+                <div>${caps(m).map((c) => `<span class="cap">✓ ${c}</span>`).join("") || '<span class="cap">metadata</span>'}</div>
+                <span class="muted">${((m.context_length || 0) / 1000).toFixed(0)}k context · ${esc((m.supported_parameters || []).slice(0, 5).join(", ") || "provider defaults")}</span>
+                <span class="price">${money(m.pricing?.prompt)} in · ${money(m.pricing?.completion)} out</span>
+              </button>`
+            )
+            .join("") || '<p class="muted">No models match. Load the live catalog or adjust filters.</p>';
+      }
+      function renderSelects() {
+        const models = state.models || fallbackModels;
+        const opts = models.map((m) => `<option value="${esc(m.id)}">${esc(m.name || m.id)}</option>`).join("");
+        ["primaryModel", "fallbackModel", "autocompleteModel", "judgeModel", "arenaA", "arenaB", "arenaC", "agentModel"].forEach((id) => {
+          const el = $("#" + id);
+          if (el) el.innerHTML = opts;
+        });
+        const pick = (id, v) => {
+          const el = $("#" + id);
+          if (!el) return;
+          el.value = models.some((m) => m.id === v) ? v : models[0]?.id;
+        };
+        pick("primaryModel", state.selectedModel);
+        pick("fallbackModel", state.fallbackModel);
+        pick("autocompleteModel", state.autocompleteModel);
+        pick("judgeModel", state.judgeModel);
+        pick("arenaA", state.selectedModel);
+        pick("arenaB", state.fallbackModel);
+        pick("arenaC", state.autocompleteModel);
+        pick("agentModel", state.selectedModel);
+      }
+      function renderCtxChips() {
+        $("#ctxChips").innerHTML = state.ctx
+          .map((c, i) => `<span class="badge" data-ctx="${i}">@${esc(c)} ✕</span>`)
+          .join("");
+      }
+
+      const views = ["chat", "models", "workspace", "arena", "docs", "agents", "history", "settings"];
+      let currentView = "chat";
+      function switchView(v) {
+        if (!views.includes(v)) return;
+        currentView = v;
+        buzz(8);
+        $$("[data-view]").forEach((b) => b.classList.toggle("active", b.dataset.view === v));
+        views.forEach((id) => $("#" + id + "View")?.classList.toggle("hidden", id !== v));
+        $("#viewTitle").textContent = {
+          chat: "Chat Workbench", models: "Latest Models", workspace: "AI Coding Workbench",
+          arena: "Multi-model Arena", docs: "Docs + Rules", agents: "Custom Agents",
+          history: "History + Research", settings: "Power Settings",
+        }[v];
+      }
+
+      /* ---------- AUTO router analysis ---------- */
+      function analyzeTask(text) {
+        const s = (text || "").toLowerCase();
+        const coding = /code|refactor|bug|html|css|js|ts|swift|component|function|fix|error/.test(s) ? 10 : 4;
+        const reason = /why|plan|architecture|reason|research|compare|design/.test(s) ? 9 : 5;
+        const context = /project|files|repo|component|import|@/.test(s) ? 9 : 4;
+        const speed = /quick|fast|autocomplete|cheap|short/.test(s) ? 9 : 5;
+        $("#autoBars").innerHTML = [["Coding", coding], ["Reasoning", reason], ["Context", context], ["Speed", speed]]
+          .map(([n, v]) => `<small>${n}</small><span style="width:${v * 10}%"></span>`)
+          .join("");
+        const models = state.models || fallbackModels;
+        const rec =
+          (context > 6 && models.find((m) => caps(m).includes("Long Context") && caps(m).includes("Coding"))) ||
+          models.find((m) => caps(m).includes("Coding")) ||
+          models[0];
+        $("#autoAnalysis").textContent = `Recommended: ${rec?.name || rec?.id || "openrouter/auto"} · scores C${coding}/R${reason}/X${context}/S${speed}. Fallback: ${state.fallbackModel}.`;
+      }
+
+      /* ---------- catalog ---------- */
+      async function loadCatalog() {
+        const [, label, query] = filters.find((f) => f[0] === state.catalogFilter) || filters[0];
+        $("#catalogState").textContent = "loading " + label + "…";
+        let url = "https://openrouter.ai/api/v1/models";
+        if (query) url += "?" + query;
+        const r = await fetch(url);
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        const data = await r.json();
+        state.models = data.data?.length ? data.data : fallbackModels;
+        if (!state.models.some((m) => m.id === state.selectedModel)) state.selectedModel = state.models[0]?.id || state.selectedModel;
+        $("#catalogState").textContent = `${state.models.length} live models`;
+        save(); render();
+      }
+      async function detectLocal() {
+        try {
+          const base = state.ollamaUrl.replace(/\/v1\/.*$/, "").replace(/\/api\/.*$/, "").replace(/\/+$/, "");
+          let models = [];
+          try {
+            const r = await fetch(base + "/api/tags");
+            if (r.ok) {
+              const d = await r.json();
+              models = (d.models || []).map((m) => ({ id: m.name, name: "Ollama · " + m.name, context_length: 128000, pricing: { prompt: "0", completion: "0" }, supported_parameters: ["temperature", "top_p", "top_k", "seed", "max_tokens"], input_modalities: ["text"], description: `Local Ollama model · ${((m.size || 0) / 1e9).toFixed(1)}GB` }));
+            }
+          } catch (_) {}
+          if (!models.length) {
+            const r = await fetch(base + "/v1/models");
+            if (r.ok) {
+              const d = await r.json();
+              models = (d.data || []).map((m) => ({ id: m.id, name: "Local · " + m.id, context_length: m.context_length || 128000, pricing: { prompt: "0", completion: "0" }, supported_parameters: ["temperature", "max_tokens"], input_modalities: ["text"], description: "Local OpenAI-compatible endpoint" }));
+            }
+          }
+          if (!models.length) throw new Error("no local models found at " + base);
+          const byId = new Map([...fallbackModels, ...state.models, ...models].map((m) => [m.id, m]));
+          state.models = [...byId.values()];
+          save(); render();
+          toast(`Detected ${models.length} local model(s)`);
+        } catch (e) {
+          toast("Local detect failed: " + e.message);
+        }
+      }
+
+      /* ---------- export / import / share ---------- */
+      function download(name, text, type = "application/json") {
+        const blob = new Blob([text], { type });
+        const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: name });
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+      }
+      async function shareOrDownload(name, text, type = "application/json") {
+        try {
+          const file = new File([text], name, { type });
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file], title: name });
+            return;
+          }
+        } catch (_) {}
+        download(name, text, type);
+      }
+
+      /* ---------- slash commands & @ mentions ---------- */
+      const slashCommands = [
+        { cmd: "/plan", desc: "Switch to Plan mode" },
+        { cmd: "/agent", desc: "Switch to Agent mode" },
+        { cmd: "/edit", desc: "Inline-edit the current file (diff review)" },
+        { cmd: "/test", desc: "Generate tests for the current file" },
+        { cmd: "/review", desc: "Code-review the current file" },
+        { cmd: "/docs", desc: "Index a docs URL (@Docs)" },
+        { cmd: "/share", desc: "Share/export the conversation" },
+        { cmd: "/clear", desc: "Clear the conversation" },
+        { cmd: "/help", desc: "List capabilities" },
+      ];
+      function slashItems(prefix) {
+        const items = [];
+        if (prefix.startsWith("/")) {
+          for (const c of slashCommands) if (c.cmd.startsWith(prefix)) items.push({ label: c.cmd, desc: c.desc, run: () => applySlash(c.cmd) });
+        } else if (prefix.startsWith("@")) {
+          const q = prefix.slice(1).toLowerCase();
+          for (const f of Object.keys(state.files)) if (f.toLowerCase().includes(q)) items.push({ label: "@" + f, desc: "attach file", run: () => applyMention(f) });
+          if ("code".includes(q)) items.push({ label: "@code", desc: "current file", run: () => applyMention("code") });
+          for (const d of state.docs) if (d.url.toLowerCase().includes(q)) items.push({ label: "@" + d.url, desc: "docs", run: () => applyMention(d.url) });
+        }
+        return items.slice(0, 8);
+      }
+      function applyMention(name) {
+        if (!state.ctx.includes(name)) state.ctx.push(name);
+        const ta = $("#prompt");
+        ta.value = ta.value.replace(/@[\w./-]*$/, "").trimEnd();
+        save(); renderCtxChips(); ta.focus();
+      }
+      function applySlash(cmd) {
+        const ta = $("#prompt");
+        hideSlash();
+        ta.value = "";
+        if (cmd === "/plan") { state.mode = "plan"; save(); render(); toast("Plan mode"); }
+        else if (cmd === "/agent") { state.mode = "agent"; save(); render(); toast("Agent mode"); }
+        else if (cmd === "/edit") { runAiEdit(""); }
+        else if (cmd === "/test") { const f = state.active; addMsg("user", `/test ${f}`); send(`Write a comprehensive test suite for ${f}. Output the full test file in one code block.`); }
+        else if (cmd === "/review") { const f = state.active; addMsg("user", `/review ${f}`); send(`Review ${f} for bugs, security issues and style. Be specific with line references.`); }
+        else if (cmd === "/docs") { switchView("docs"); setTimeout(() => $("#docsUrl").focus(), 120); }
+        else if (cmd === "/share") { shareChat(); }
+        else if (cmd === "/clear") { clearChat(); }
+        else if (cmd === "/help") { addMsg("ai", slashCommands.map((c) => `**${c.cmd}** — ${c.desc}`).join("\n")); }
+      }
+      function hideSlash() { $("#slashMenu").classList.add("hidden"); }
+      function updateSlashMenu() {
+        const v = $("#prompt").value;
+        const m = v.match(/(^|\s)(\/[\w-]*|@[\w./-]*)$/);
+        const menu = $("#slashMenu");
+        if (!m) { hideSlash(); return; }
+        const items = slashItems(m[2]);
+        if (!items.length) { hideSlash(); return; }
+        menu.innerHTML = items
+          .map((it, i) => `<button data-i="${i}" class="${i === 0 ? "active" : ""}"><span>${esc(it.label)}</span><span class="muted">${esc(it.desc)}</span></button>`)
+          .join("");
+        menu.classList.remove("hidden");
+        menu.querySelectorAll("button").forEach((b, i) => (b.onclick = () => items[i].run()));
+      }
+
+      /* ---------- misc actions ---------- */
+      function clearChat() {
+        state.convo = [];
+        state.ctx = [];
+        save();
+        $("#messages").innerHTML = "";
+        addMsg("ai", "Chat cleared. What are we building next? 🚀", { open: false, ephemeral: true });
+        render();
+      }
+      function shareChat() {
+        const text = state.convo.map((m) => `${m.role === "user" ? "🧑 You" : "🤖 Assistant"}:\n${m.content}`).join("\n\n---\n\n");
+        if (!text.trim()) { toast("Nothing to share yet"); return; }
+        shareOrDownload("forgepilot-chat.md", text, "text/markdown").then(() => toast("Chat shared/exported"));
+      }
+      function previewHtml() {
+        const html = state.files["index.html"] ?? state.files[state.active] ?? "";
+        if (!html.trim()) { toast("No HTML to preview"); return; }
+        const w = window.open("", "_blank");
+        if (!w) { toast("Popup blocked — allow popups"); return; }
+        w.document.open();
+        w.document.write(html);
+        w.document.close();
+        buzz(10);
+      }
+      function exportConfig() {
+        const cfg = {
+          name: "ForgePilot Local",
+          version: "2.0",
+          schema: "v1",
+          models: (state.models || []).slice(0, 50).map((m) => ({ name: m.name || m.id, provider: state.provider, model: m.id })),
+          rules: state.rules,
+          agents: state.agents,
+          docs: state.docs.map((d) => ({ url: d.url })),
+          defaults: { model: state.selectedModel, fallback: state.fallbackModel, autocomplete: state.autocompleteModel },
+        };
+        download("forgepilot.config.json", JSON.stringify(cfg, null, 2));
+        toast("Continue-style config exported");
+      }
+      async function importConfig(file) {
+        try {
+          const cfg = JSON.parse(await file.text());
+          if (Array.isArray(cfg.rules)) state.rules = cfg.rules.map(String);
+          if (Array.isArray(cfg.agents) && cfg.agents.length)
+            state.agents = cfg.agents.map((a) => ({ name: String(a.name || "Agent"), prompt: String(a.prompt || ""), model: String(a.model || state.selectedModel) }));
+          if (Array.isArray(cfg.docs)) state.docs = cfg.docs.map((d) => ({ url: String(typeof d === "string" ? d : d.url || ""), content: "", when: new Date().toLocaleString() })).filter((d) => d.url);
+          if (cfg.defaults?.model) state.selectedModel = String(cfg.defaults.model);
+          save(); render();
+          toast("Config imported");
+        } catch (e) {
+          toast("Config import failed: " + e.message);
+        }
+      }
+      async function addDocIndex() {
+        const url = $("#docsUrl").value.trim();
+        if (!/^https?:\/\//.test(url)) { toast("Enter a full https:// docs URL"); return; }
+        buzz(10);
+        let content = "";
+        try {
+          const r = await fetch(url);
+          if (r.ok) {
+            const html = await r.text();
+            content = html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 8000);
+          }
+        } catch (_) {}
+        state.docs.unshift({ url, content, when: new Date().toLocaleString() });
+        $("#docsUrl").value = "";
+        save(); render();
+        toast(content ? "Docs page indexed (" + content.length + " chars)" : "Indexed as reference (live fetch blocked by CORS)");
+      }
+      async function makeResearchBlock() {
+        const topic = $("#researchPrompt").value.trim();
+        if (!topic) { toast("Enter a research topic"); return; }
+        $("#researchPrompt").value = "";
+        buzz(10);
+        try {
+          const { text } = await callLLM(
+            [
+              { role: "system", content: "You are a research assistant. Produce a compact reasoning block: assumptions, evidence needed, risks, and the next concrete experiment." },
+              { role: "user", content: topic },
+            ],
+            { provider: state.provider }
+          );
+          state.research.unshift({ title: topic.slice(0, 70), body: text });
+        } catch (e) {
+          state.research.unshift({ title: topic.slice(0, 70), body: `⚠️ LLM unavailable (${e.message}). Assumptions, evidence needed, risks and next experiment for: ${topic}` });
+        }
+        save(); render();
+      }
+
+      /* ---------- action sheet (iOS pattern) ---------- */
+      function openSheet(actions) {
+        const inner = $("#actionSheetInner");
+        inner.innerHTML =
+          '<div class="sheet-grab"></div>' +
+          actions.map((a, i) => `<button class="action secondary" data-act="${i}">${a.icon} ${a.label}</button>`).join("") +
+          '<button class="action ghost" data-act="x">Cancel</button>';
+        inner.querySelectorAll("[data-act]").forEach((b) => {
+          b.onclick = () => {
+            closeSheet();
+            const a = actions[Number(b.dataset.act)];
+            if (a) a.run();
+          };
+        });
+        $("#actionSheet").classList.remove("hidden");
+        buzz(10);
+      }
+      function closeSheet() { $("#actionSheet").classList.add("hidden"); }
+
+      /* =====================================================================
+         EVENT WIRING
+         ===================================================================== */
+      const on = (id, ev, fn) => { const el = $("#" + id); if (el) el.addEventListener(ev, fn); };
+
+      on("connectOpenRouter", "click", () => loadCatalog().catch((e) => toast("Catalog error: " + e.message)));
+      on("detectLocal", "click", detectLocal);
+      on("clearKey", "click", () => {
+        sessionKey = "";
+        localStorage.removeItem(storeKey + "-key");
+        localStorage.removeItem(legacyKey + "-key");
+        $("#openRouterKey").value = "";
+        toast("API key forgotten");
+      });
+      on("modelFilters", "click", (e) => {
+        const b = e.target.closest("[data-filter]");
+        if (!b) return;
+        state.catalogFilter = b.dataset.filter;
+        save(); render();
+        loadCatalog().catch(() => { $("#catalogState").textContent = "offline — showing cached"; });
+      });
+      on("modelSearch", "input", renderModels);
+      on("modelGrid", "click", (e) => {
+        const b = e.target.closest("[data-model]");
+        if (!b) return;
+        state.selectedModel = b.dataset.model;
+        save(); render();
+        buzz(12);
+        toast("Primary model: " + state.selectedModel);
+      });
+      on("openRouterKey", "input", (e) => {
+        sessionKey = e.target.value;
+        if (state.rememberKey) localStorage.setItem(storeKey + "-key", sessionKey);
+      });
+      on("rememberKey", "change", (e) => {
+        state.rememberKey = e.target.checked;
+        if (!state.rememberKey) localStorage.removeItem(storeKey + "-key");
+        else if (sessionKey) localStorage.setItem(storeKey + "-key", sessionKey);
+        save();
+        toast(state.rememberKey ? "Key will be remembered on this device" : "Key is memory-only now");
+      });
+      on("ollamaUrl", "input", (e) => { state.ollamaUrl = e.target.value; save(); });
+      $$("input[name=provider]").forEach((r) =>
+        r.addEventListener("change", (e) => { state.provider = e.target.value; save(); render(); buzz(8); })
+      );
+      $$("[data-mode]").forEach((b) =>
+        b.addEventListener("click", () => { state.mode = b.dataset.mode; save(); render(); buzz(10); })
+      );
+      $$("[data-view]").forEach((b) => b.addEventListener("click", () => switchView(b.dataset.view)));
+
+      on("toggleAssistant", "click", () => showAssistant($("#assistantPanel").classList.contains("collapsed")));
+      on("closeAssistant", "click", () => showAssistant(false));
+      on("assistantFab", "click", () => { showAssistant(true); buzz(10); $("#prompt").focus(); });
+
+      /* ----- composer ----- */
+      const promptTA = $("#prompt");
+      promptTA.addEventListener("input", updateSlashMenu);
+      promptTA.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); sendFromComposer(); }
+        if (e.key === "Escape") hideSlash();
+        if (e.key === "Tab" && !$("#slashMenu").classList.contains("hidden")) {
+          e.preventDefault();
+          $("#slashMenu button")?.click();
+        }
+      });
+      function sendFromComposer() {
+        const p = promptTA.value.trim();
+        if (!p && !state.ctx.length) return;
+        hideSlash();
+        const chips = [...state.ctx];
+        const withCtx = chips.map((c) => "@" + c).join(" ") + " " + p;
+        state.ctx = [];
+        renderCtxChips();
+        addMsg("user", p || "(context attached)", { ctx: chips });
+        promptTA.value = "";
+        buzz(12);
+        send(withCtx);
+      }
+      on("sendPrompt", "click", sendFromComposer);
+      on("stopBtn", "click", () => { abortCtl?.abort(); agentRunning = false; setBusy(false); addMsg("ai", "⏹ Stopped by user.", { reasoning: true, open: false, ephemeral: true }); });
+      on("ctxChips", "click", (e) => {
+        const b = e.target.closest("[data-ctx]");
+        if (!b) return;
+        state.ctx.splice(Number(b.dataset.ctx), 1);
+        save(); renderCtxChips();
+      });
+      on("sendMain", "click", () => {
+        const p = $("#mainPrompt").value.trim();
+        if (!p) return;
+        addMsg("user", p);
+        $("#mainPrompt").value = "";
+        analyzeTask("");
+        send(p);
+      });
+      on("mainPrompt", "input", (e) => analyzeTask(e.target.value));
+
+      /* ----- voice input (Web Speech API) ----- */
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      let recog = null;
+      on("micBtn", "click", () => {
+        if (!SpeechRec) { toast("Voice input not supported in this browser"); return; }
+        if (recog) { try { recog.stop(); } catch (_) {} return; }
+        recog = new SpeechRec();
+        recog.lang = "en-US";
+        recog.interimResults = true;
+        const base = promptTA.value;
+        recog.onresult = (e) => {
+          const t = [...e.results].map((r) => r[0].transcript).join("");
+          promptTA.value = (base ? base + " " : "") + t;
+        };
+        const done = () => { recog = null; $("#micBtn").textContent = "🎙️"; };
+        recog.onend = done;
+        recog.onerror = () => { done(); toast("Mic error — check permission"); };
+        $("#micBtn").textContent = "🔴";
+        buzz(15);
+        try { recog.start(); } catch (_) { done(); }
+      });
+
+      /* ----- editor ----- */
+      const editor = $("#editor");
+      editor.addEventListener("input", () => {
+        if (!state.files[state.active]) state.files[state.active] = "";
+        state.files[state.active] = editor.value;
+        save();
+        syncHighlight();
+        hideAutocomplete();
+        scheduleAutocomplete();
+      });
+      editor.addEventListener("scroll", () => {
+        const hl = $("#editorHl");
+        hl.scrollTop = editor.scrollTop;
+        hl.scrollLeft = editor.scrollLeft;
+      });
+      editor.addEventListener("keydown", (e) => {
+        if (e.key === "Tab") {
+          e.preventDefault();
+          if (acSuggestion) {
+            editor.setRangeText(acSuggestion, editor.selectionStart, editor.selectionEnd, "end");
+            state.files[state.active] = editor.value;
+            save(); syncHighlight(); hideAutocomplete();
+            buzz(8);
+          } else {
+            editor.setRangeText("  ", editor.selectionStart, editor.selectionEnd, "end");
+            state.files[state.active] = editor.value;
+            save(); syncHighlight();
+          }
+        }
+        if (e.key === "Escape") hideAutocomplete();
+        if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); runAiEdit(""); }
+      });
+      on("fileTree", "click", (e) => {
+        const pin = e.target.closest("[data-pin]");
+        if (pin) {
+          e.stopPropagation();
+          const p = pin.dataset.pin;
+          state.pinned = state.pinned.includes(p) ? state.pinned.filter((x) => x !== p) : [...state.pinned, p];
+          save(); render(); buzz(8);
+          return;
+        }
+        const del = e.target.closest("[data-del]");
+        if (del) {
+          e.stopPropagation();
+          const p = del.dataset.del;
+          if (window.confirm(`Delete ${p}?`)) {
+            pushUndo(p);
+            delete state.files[p];
+            if (state.active === p) state.active = Object.keys(state.files)[0] || "";
+            save(); render();
+            toast("Deleted " + p);
+          }
+          return;
+        }
+        const b = e.target.closest("[data-file]");
+        if (b) { state.active = b.dataset.file; save(); render(); buzz(6); }
+      });
+      function newFile() {
+        const n = window.prompt("File path", "src/new-module.js");
+        if (!n) return;
+        if (!state.files[n]) state.files[n] = "// New file\n";
+        state.active = n;
+        save(); render(); switchView("workspace");
+      }
+      on("newFile", "click", newFile);
+      on("newFile2", "click", newFile);
+      on("aiEditBtn", "click", () => {
+        const instr = window.prompt(`AI Edit instruction for ${state.active}:`, "Improve this code: fix bugs, add validation and clarity.");
+        if (instr !== null) runAiEdit(instr);
+      });
+      on("previewBtn", "click", previewHtml);
+      on("syntaxBtn", "click", () => { state.settings.syntax = !state.settings.syntax; save(); render(); toast("Syntax highlighting " + (state.settings.syntax ? "on" : "off")); });
+      on("acceptDiff", "click", () => {
+        const d = state.pendingDiff;
+        if (!d) { toast("No pending diff"); return; }
+        pushUndo(d.file);
+        state.files[d.file] = d.proposed;
+        state.pendingDiff = null;
+        $("#diffBox").textContent = "Diff accepted ✓";
+        save(); render();
+        buzz(20);
+        toast("Diff accepted");
+        if (state.settings.autoTest) toast("Auto-lint: " + (/\bundefined\b|TODO/.test(d.proposed) ? "⚠️ found TODO/undefined" : "✓ no obvious issues"));
+      });
+      on("rejectDiff", "click", () => {
+        state.pendingDiff = null;
+        $("#diffBox").textContent = "Diff rejected.";
+        toast("Diff rejected");
+      });
+      on("undoDiff", "click", () => {
+        const prev = state.undoStack[state.active];
+        if (prev === undefined || prev === null) { toast("Nothing to undo for this file"); return; }
+        state.files[state.active] = prev;
+        delete state.undoStack[state.active];
+        save(); render();
+        buzz(12);
+        toast("Undo restored");
+      });
+
+      /* ----- arena (fixed escaping + real judge) ----- */
+      on("runArena", "click", async () => {
+        const promptText = $("#arenaPrompt").value.trim() || "Compare approaches for building a local-first iOS-friendly HTML game app.";
+        const ids = [...new Set([$("#arenaA").value, $("#arenaB").value, $("#arenaC").value].filter(Boolean))];
+        $("#arenaState").textContent = "running…";
+        $("#arenaResults").innerHTML = ids.map((id) => `<div class="arena-card"><strong>${esc(id)}</strong><p class="muted">running…</p></div>`).join("");
+        const results = await Promise.all(
+          ids.map(async (id) => {
+            const t = performance.now();
+            try {
+              const { text } = await callLLM(
+                [
+                  { role: "system", content: "You are competing in a model arena. Give your best, most complete answer. Be concise." },
+                  { role: "user", content: promptText },
+                ],
+                { model: id, provider: $("#chatProvider").value }
+              );
+              return { id, text, sec: ((performance.now() - t) / 1000).toFixed(1) };
+            } catch (e) {
+              return { id, text: "Error: " + e.message, sec: "0" };
+            }
+          })
+        );
+        $("#arenaResults").innerHTML = results
+          .map((r) => `<div class="arena-card"><strong>${esc(r.id)}</strong><p>${renderMd(r.text)}</p><p class="muted">${r.sec}s · measured client-side</p></div>`)
+          .join("");
+        $("#arenaState").textContent = "complete";
+        $("#arenaResults").dataset.last = JSON.stringify({ promptText, results });
+        buzz(20);
+      });
+      on("judgeArena", "click", async () => {
+        const last = $("#arenaResults").dataset.last;
+        if (!last) { toast("Run the arena first"); return; }
+        const { promptText, results } = JSON.parse(last);
+        $("#arenaState").textContent = "judging…";
+        try {
+          const { text } = await callLLM(
+            [
+              { role: "system", content: "You are a strict judge. Criteria: correctness, reasoning, code quality, completeness, hallucination risk, instruction following. Rank the answers, explain briefly, then declare a winner." },
+              { role: "user", content: `PROMPT:\n${promptText}\n\n${results.map((r, i) => `ANSWER ${String.fromCharCode(65 + i)} (${r.id}):\n${r.text}`).join("\n\n")}` },
+            ],
+            { model: state.judgeModel, provider: $("#chatProvider").value }
+          );
+          addMsg("ai", "🏆 **Judge verdict**\n\n" + text);
+          $("#arenaState").textContent = "judged";
+        } catch (e) {
+          $("#arenaState").textContent = "judge failed";
+          toast("Judge error: " + e.message);
+        }
+      });
+
+      /* ----- docs / rules / agents ----- */
+      on("addDoc", "click", addDocIndex);
+      on("docsList", "click", (e) => {
+        const b = e.target.closest("[data-rm-doc]");
+        if (!b) return;
+        state.docs.splice(Number(b.dataset.rmDoc), 1);
+        save(); render();
+      });
+      on("addRule", "click", () => {
+        const v = $("#newRule").value.trim();
+        if (!v) return;
+        state.rules.push(v);
+        $("#newRule").value = "";
+        save(); render(); buzz(8);
+      });
+      on("rulesList", "click", (e) => {
+        const b = e.target.closest("[data-rm-rule]");
+        if (!b) return;
+        state.rules.splice(Number(b.dataset.rmRule), 1);
+        save(); render();
+      });
+      on("createAgent", "click", () => {
+        const name = $("#agentName").value.trim();
+        const promptText = $("#agentPrompt").value.trim();
+        if (!name) { toast("Give the agent a name"); return; }
+        state.agents.push({ name, prompt: promptText, model: $("#agentModel").value || state.selectedModel });
+        state.activeAgent = name;
+        $("#agentName").value = "";
+        $("#agentPrompt").value = "";
+        save(); render(); buzz(15);
+        toast("Agent created and activated");
+      });
+      on("agentsList", "click", (e) => {
+        const use = e.target.closest("[data-use-agent]");
+        if (use) {
+          state.activeAgent = state.agents[Number(use.dataset.useAgent)].name;
+          save(); render(); buzz(10);
+          toast("Active agent: " + state.activeAgent);
+          return;
+        }
+        const rm = e.target.closest("[data-rm-agent]");
+        if (rm) {
+          const a = state.agents[Number(rm.dataset.rmAgent)];
+          if (state.activeAgent === a.name) state.activeAgent = "Default";
+          state.agents.splice(Number(rm.dataset.rmAgent), 1);
+          save(); render();
+        }
+      });
+      on("exportConfig", "click", exportConfig);
+      on("importConfig", "click", () => $("#importConfigFile").click());
+      on("importConfigFile", "change", (e) => { if (e.target.files[0]) importConfig(e.target.files[0]); e.target.value = ""; });
+      on("configBtn", "click", () => { switchView("agents"); setTimeout(() => $("#exportConfig").focus(), 120); });
+
+      /* ----- research ----- */
+      on("makeResearch", "click", makeResearchBlock);
+
+      /* ----- settings ----- */
+      ["primaryModel", "fallbackModel", "autocompleteModel", "judgeModel"].forEach((id) =>
+        on(id, "change", (e) => {
+          const map = { primaryModel: "selectedModel", fallbackModel: "fallbackModel", autocompleteModel: "autocompleteModel", judgeModel: "judgeModel" };
+          state[map[id]] = e.target.value;
+          save(); render();
+        })
+      );
+      ["temperature", "topP", "topK", "maxTokens", "contextSize", "seedValue"].forEach((id) =>
+        on(id, "input", (e) => {
+          const key = id === "seedValue" ? "seed" : id;
+          state.settings[key] = Number(e.target.value);
+          save();
+        })
+      );
+      {
+        const map = { reasoningLevel: "reasoning", routingPref: "routing", fallbackBehavior: "fallback", retention: "retention", themePref: "theme" };
+        Object.keys(map).forEach((id) =>
+          on(id, "change", (e) => { state.settings[map[id]] = e.target.value; save(); render(); })
+        );
+      }
+      {
+        const map = { streamResponses: "stream", agentApproval: "approval", allowWrites: "writes", hapticsToggle: "haptics", syntaxHl: "syntax", autoTest: "autoTest", compactMode: "compact", animations: "animations" };
+        Object.keys(map).forEach((id) =>
+          on(id, "change", (e) => { state.settings[map[id]] = e.target.checked; save(); render(); })
+        );
+      }
+
+      /* ----- export / import / share ----- */
+      on("exportBtn", "click", () => {
+        const exported = { ...state, rememberKey: false, pendingDiff: null };
+        shareOrDownload("forgepilot-workspace.json", JSON.stringify(exported, null, 2)).then(() => toast("Exported (API key never included)"));
+      });
+      on("importBtn", "click", () => $("#importFile").click());
+      on("importFile", "change", async (e) => {
+        const f = e.target.files[0];
+        if (f) {
+          try {
+            state = mergeState(seed, JSON.parse(await f.text()));
+            save(); render();
+            toast("Imported");
+          } catch (err) {
+            toast("Import failed: " + err.message);
+          }
+        }
+        e.target.value = "";
+      });
+
+      /* ----- quick actions & sheets ----- */
+      $$(".quick").forEach((b) =>
+        b.addEventListener("click", () => {
+          const q = b.dataset.quick;
+          buzz(10);
+          if (q === "newchat") clearChat();
+          else if (q === "html") { addMsg("user", "Generate a complete, impressive single-file HTML5 game or app, iPhone-friendly."); send("Generate a complete, polished single-file HTML5 game or interactive app that works great on iPhone (touch controls, viewport-fit, safe areas). Output the full HTML in one code block so I can preview it."); }
+          else if (q === "agent") { state.mode = "agent"; save(); render(); showAssistant(true); $("#prompt").focus(); }
+          else if (q === "arena") switchView("arena");
+          else if (q === "import") $("#importFile").click();
+          else if (q === "preview") previewHtml();
+          else if (q === "share") shareChat();
+          else if (q === "rules") switchView("docs");
+        })
+      );
+      const actionSheetItems = () => [
+        { icon: "＋", label: "New chat", run: clearChat },
+        { icon: "📄", label: "New file", run: newFile },
+        { icon: "🌐", label: "Generate HTML app", run: () => { addMsg("user", "Generate an HTML app"); send("Generate a complete, polished single-file HTML5 app, iPhone-friendly. Output the full HTML in one code block."); } },
+        { icon: "👁️", label: "Preview HTML", run: previewHtml },
+        { icon: "🥊", label: "Compare models (Arena)", run: () => switchView("arena") },
+        { icon: "🤖", label: "Agent mode", run: () => { state.mode = "agent"; save(); render(); showAssistant(true); } },
+        { icon: "📤", label: "Share chat", run: shareChat },
+        { icon: "📎", label: "Import workspace", run: () => $("#importFile").click() },
+        { icon: "🧾", label: "Export Continue config", run: exportConfig },
+        { icon: "🔎", label: "Detect local models", run: detectLocal },
+      ];
+      on("plusBtn", "click", () => openSheet(actionSheetItems()));
+      on("mobilePlus", "click", () => openSheet(actionSheetItems()));
+      on("actionSheet", "click", (e) => { if (e.target.id === "actionSheet") closeSheet(); });
+
+      /* ----- swipe navigation (iOS gesture) ----- */
+      let touchX = null, touchY = null;
+      const ws = $("#workspacePanel");
+      ws.addEventListener("touchstart", (e) => {
+        if (e.target.closest("textarea, input, select, .scroll, .assistant, pre, button")) return;
+        touchX = e.touches[0].clientX;
+        touchY = e.touches[0].clientY;
+      }, { passive: true });
+      ws.addEventListener("touchend", (e) => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        const dy = e.changedTouches[0].clientY - touchY;
+        touchX = null;
+        if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.6) {
+          const i = views.indexOf(currentView);
+          switchView(views[(i + (dx < 0 ? 1 : views.length - 1)) % views.length]);
+        }
+      }, { passive: true });
+
+      /* ----- assistant swipe-down to dismiss (iOS sheet gesture) ----- */
+      let asY = null;
+      const aHead = $(".assistant-head");
+      aHead.addEventListener("touchstart", (e) => { asY = e.touches[0].clientY; }, { passive: true });
+      aHead.addEventListener("touchend", (e) => {
+        if (asY === null) return;
+        if (e.changedTouches[0].clientY - asY > 60) showAssistant(false);
+        asY = null;
+      }, { passive: true });
+
+      /* ----- pull-to-refresh on models list ----- */
+      let ptY = null;
+      const ms = $("#modelsScroll");
+      ms.addEventListener("touchstart", (e) => { if (ms.scrollTop <= 0) ptY = e.touches[0].clientY; }, { passive: true });
+      ms.addEventListener("touchend", (e) => {
+        if (ptY === null) return;
+        if (e.changedTouches[0].clientY - ptY > 90 && ms.scrollTop <= 0) {
+          toast("Refreshing catalog…");
+          loadCatalog().catch((err) => toast("Catalog error: " + err.message));
+        }
+        ptY = null;
+      }, { passive: true });
+
+      /* ----- iOS keyboard handling via visualViewport ----- */
+      if (window.visualViewport) {
+        const onResizeVV = () => {
+          const kb = Math.max(0, window.innerHeight - window.visualViewport.height - (window.visualViewport.offsetTop || 0));
+          document.documentElement.style.setProperty("--kb", kb > 60 ? kb + "px" : "0px");
+          if (kb > 60) setTimeout(scrollMsgs, 60);
+        };
+        window.visualViewport.addEventListener("resize", onResizeVV);
+        window.visualViewport.addEventListener("scroll", onResizeVV);
+      }
+
+      /* ----- global shortcuts ----- */
+      document.addEventListener("keydown", (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); showAssistant(true); $("#prompt").focus(); }
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "e") { e.preventDefault(); switchView("workspace"); }
+        if (e.key === "Escape" && !$("#actionSheet").classList.contains("hidden")) closeSheet();
+      });
+
+      /* ----- welcome ----- */
+      on("startBtn", "click", () => {
+        $("#welcome").remove();
+        localStorage.setItem(storeKey + "-welcomed", "1");
+        buzz(20);
+      });
+      if (localStorage.getItem(storeKey + "-welcomed") || localStorage.getItem(legacyKey + "-welcomed")) $("#welcome")?.remove();
+
+      /* ----- PWA manifest (runtime-generated) ----- */
+      try {
+        const manifest = {
+          name: "ForgePilot Local",
+          short_name: "ForgePilot",
+          display: "standalone",
+          background_color: "#060812",
+          theme_color: "#080b16",
+          start_url: ".",
+          icons: [
+            { src: "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs><rect width="100" height="100" rx="24" fill="url(#g)"/><text x="50" y="66" font-size="52" text-anchor="middle" fill="white" font-family="system-ui">F</text></svg>'), sizes: "any", type: "image/svg+xml" },
+          ],
+        };
+        const link = document.createElement("link");
+        link.rel = "manifest";
+        link.href = URL.createObjectURL(new Blob([JSON.stringify(manifest)], { type: "application/json" }));
+        document.head.appendChild(link);
+      } catch (_) {}
+
+      /* ----- boot ----- */
+      document.body.dataset.theme = state.settings.theme;
+      document.body.classList.toggle("no-anim", !state.settings.animations);
+      render();
+      addMsg(
+        "ai",
+        "👋 **ForgePilot Local v2.0** — the full Continue.dev feature set, rebuilt iPhone-first.\n\n" +
+          "• Modes: **Chat / Plan / Edit / Agent** — Agent has real tool-calling (read/write/search/delete files)\n" +
+          "• Type **/** for commands, **@** to attach files & docs\n" +
+          "• 🎙️ voice input · 🌊 streaming · ⏹ stop · 📳 haptics · 👁️ HTML preview · 🎨 syntax highlighting\n" +
+          "• Your API key stays memory-only unless you opt in. Swipe left/right to change views.",
+        { open: false, ephemeral: true }
+      );
     </script>
   </body>
 </html>
